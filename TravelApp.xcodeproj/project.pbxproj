@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E05B068D245F38E000B73562 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B068C245F38E000B73562 /* Destination.swift */; };
+		E0BB2A74245F13DF000E4B96 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BB2A73245F13DF000E4B96 /* Connection.swift */; };
+		E0BB2A76245F195C000E4B96 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BB2A75245F195C000E4B96 /* User.swift */; };
 		E0CC7B3D245E162E008783C0 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CC7B3C245E162E008783C0 /* SignInViewController.swift */; };
 		E0CC7B41245E1F22008783C0 /* regViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CC7B40245E1F22008783C0 /* regViewController.swift */; };
 		E0DB18E3245CA91E00FA0F82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB18E2245CA91E00FA0F82 /* AppDelegate.swift */; };
@@ -15,9 +18,13 @@
 		E0DB18EA245CA91E00FA0F82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0DB18E8245CA91E00FA0F82 /* Main.storyboard */; };
 		E0DB18EC245CA91E00FA0F82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0DB18EB245CA91E00FA0F82 /* Assets.xcassets */; };
 		E0DB18EF245CA91E00FA0F82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0DB18ED245CA91E00FA0F82 /* LaunchScreen.storyboard */; };
+		E0F3E70F245EFA9800A3FA24 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E0F3E70E245EFA9800A3FA24 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E05B068C245F38E000B73562 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
+		E0BB2A73245F13DF000E4B96 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		E0BB2A75245F195C000E4B96 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0CC7B3C245E162E008783C0 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E0CC7B40245E1F22008783C0 /* regViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = regViewController.swift; sourceTree = "<group>"; };
 		E0DB18DF245CA91E00FA0F82 /* TravelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,6 +35,8 @@
 		E0DB18EB245CA91E00FA0F82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0DB18EE245CA91E00FA0F82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0DB18F0245CA91E00FA0F82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0F3E70E245EFA9800A3FA24 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		E0F3E710245EFADB00A3FA24 /* TravelApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TravelApp-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0F3E70F245EFA9800A3FA24 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,10 +75,15 @@
 				E0DB18E6245CA91E00FA0F82 /* ViewController.swift */,
 				E0CC7B3C245E162E008783C0 /* SignInViewController.swift */,
 				E0CC7B40245E1F22008783C0 /* regViewController.swift */,
+				E0BB2A73245F13DF000E4B96 /* Connection.swift */,
 				E0DB18E8245CA91E00FA0F82 /* Main.storyboard */,
 				E0DB18EB245CA91E00FA0F82 /* Assets.xcassets */,
 				E0DB18ED245CA91E00FA0F82 /* LaunchScreen.storyboard */,
 				E0DB18F0245CA91E00FA0F82 /* Info.plist */,
+				E0BB2A75245F195C000E4B96 /* User.swift */,
+				E05B068C245F38E000B73562 /* Destination.swift */,
+				E0F3E70E245EFA9800A3FA24 /* libsqlite3.tbd */,
+				E0F3E710245EFADB00A3FA24 /* TravelApp-Bridging-Header.h */,
 			);
 			path = TravelApp;
 			sourceTree = "<group>";
@@ -105,6 +120,7 @@
 				TargetAttributes = {
 					E0DB18DE245CA91E00FA0F82 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -145,10 +161,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0DB18E7245CA91E00FA0F82 /* ViewController.swift in Sources */,
+				E0BB2A74245F13DF000E4B96 /* Connection.swift in Sources */,
 				E0DB18E3245CA91E00FA0F82 /* AppDelegate.swift in Sources */,
 				E0DB18E5245CA91E00FA0F82 /* SceneDelegate.swift in Sources */,
 				E0CC7B3D245E162E008783C0 /* SignInViewController.swift in Sources */,
 				E0CC7B41245E1F22008783C0 /* regViewController.swift in Sources */,
+				E05B068D245F38E000B73562 /* Destination.swift in Sources */,
+				E0BB2A76245F195C000E4B96 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TravelApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -300,6 +320,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.catalin.TravelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TravelApp/TravelApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -309,6 +331,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TravelApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -317,6 +340,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.catalin.TravelApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TravelApp/TravelApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

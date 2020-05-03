@@ -14,9 +14,14 @@ class SignInViewController: UIViewController{
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
+    var con: Connection = Connection.init()
+    
     override func viewDidLoad() {
-         super.viewDidLoad()
-     }
+        super.viewDidLoad()
+        con.openDatabase()
+        con.createTable(query: "CREATE TABLE IF NOT EXISTS user (id INTEGER Primary KEY Autoincrement, firstname varchar(25) NOT NULL, lastname Varchar(25) NOT NULL, email Varchar(45) UNIQUE NOT NULL, password VARCHAR(25) NOT NULL, monthlyincome INTEGER, monthlyspending INTEGER);")
+        con.createTable(query: "CREATE TABLE IF NOT EXISTS destination (id INTEGER Primary KEY Autoincrement, city varchar(25) NOT NULL, country Varchar(25) NOT NULL, avgaccomodation INTEGER NOT NULL, avgfood INTEGER NOT NULL, avgplanetickets INTEGER NOT NULL, avgattractions INTEGER NOT NULL);")
+    }
      
      override func didReceiveMemoryWarning() {
          super.didReceiveMemoryWarning()
@@ -26,6 +31,17 @@ class SignInViewController: UIViewController{
         if (emailAddressTextField.text?.isEmpty)! ||  (passwordTextField.text?.isEmpty)!{
             displayMessage(userMessage: "All fields are required to fill in.")
             return
+        }
+        else{
+            let email = emailAddressTextField.text!
+            let pass = passwordTextField.text!
+            if(con.logIn(email: email, password: pass))
+            {
+                print("Login worked!\n")
+            }
+            else{
+                print("NOT WORKING\n")
+            }
         }
     }
     
