@@ -46,6 +46,10 @@ class SignInViewController: UIViewController{
             if(con.logIn(email: email, password: pass))
             {
                 print("Login worked!\n")
+                
+                let PlatformaViewController = storyboard?.instantiateViewController(withIdentifier: "PlatformaViewController") as! PlatformaViewController
+                PlatformaViewController.modalPresentationStyle = .fullScreen
+                self.present(PlatformaViewController, animated: true)
             }
             else{
                 print("NOT WORKING\n")
