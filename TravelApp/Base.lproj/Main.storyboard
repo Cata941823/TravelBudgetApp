@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gIC-T9-Mn5">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -19,7 +19,7 @@
                                 <rect key="frame" x="-8" y="0.0" width="422" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Budget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxz-Qw-dIQ">
-                                <rect key="frame" x="104.5" y="84" width="205" height="42"/>
+                                <rect key="frame" x="104.66666666666669" y="84" width="205" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -128,7 +128,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Budget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ohi-ld-j1v">
-                                <rect key="frame" x="104.5" y="84" width="205" height="42"/>
+                                <rect key="frame" x="104.66666666666669" y="84" width="205" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -178,7 +178,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRI-F2-lLj">
-                                <rect key="frame" x="173.5" y="597" width="67" height="36"/>
+                                <rect key="frame" x="173.66666666666666" y="597" width="67" height="36"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="SIgn up">
@@ -189,11 +189,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmT-Gm-YoK">
-                                <rect key="frame" x="69.5" y="640" width="275" height="35"/>
+                                <rect key="frame" x="69.666666666666686" y="640" width="275" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Already have an account? Log in">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="gotoLogin:" destination="K1c-WS-IKu" eventType="touchUpInside" id="Lho-b6-MYZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -249,63 +252,138 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="K0K-IZ-6OW">
                                 <rect key="frame" x="-106" y="-40" width="574" height="1023"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danila Catalin-Gabriel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xh-dd-jhT">
-                                <rect key="frame" x="39" y="81" width="283" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KjX-T9-Waq">
-                                <rect key="frame" x="20" y="203" width="374" height="45"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="+ Add income">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmj-4E-eC3">
+                                <rect key="frame" x="20" y="57" width="374" height="130"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danila Catalin-Gabriel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9s8-cV-vId">
+                                        <rect key="frame" x="22" y="21" width="274" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="9s8-cV-vId" secondAttribute="height" multiplier="274:35" id="RsH-mj-2yr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1255 RON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIR-s9-bME">
+                                        <rect key="frame" x="247" y="81" width="105" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="28" id="IgA-Ma-ueu"/>
+                                            <constraint firstAttribute="width" secondItem="vIR-s9-bME" secondAttribute="height" multiplier="15:4" id="ayI-p4-Gp5"/>
+                                            <constraint firstAttribute="width" constant="105" id="oYR-pN-eaQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="vIR-s9-bME" firstAttribute="top" secondItem="9s8-cV-vId" secondAttribute="bottom" constant="25" id="15e-Pi-3uV"/>
+                                    <constraint firstItem="9s8-cV-vId" firstAttribute="leading" secondItem="cmj-4E-eC3" secondAttribute="leading" constant="22" id="8y4-fd-KWa"/>
+                                    <constraint firstAttribute="width" constant="374" id="Hgq-OW-igw"/>
+                                    <constraint firstAttribute="height" constant="130" id="Hzf-Mt-lhv"/>
+                                    <constraint firstItem="9s8-cV-vId" firstAttribute="top" secondItem="cmj-4E-eC3" secondAttribute="top" constant="21" id="X5j-Rl-8LN"/>
+                                    <constraint firstAttribute="trailing" secondItem="vIR-s9-bME" secondAttribute="trailing" constant="22" id="oKI-K0-hHT"/>
+                                    <constraint firstAttribute="width" secondItem="cmj-4E-eC3" secondAttribute="height" multiplier="187:65" id="oup-bd-ANN"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PU7-lP-WzY">
+                                <rect key="frame" x="20" y="195" width="374" height="36"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PU7-lP-WzY" secondAttribute="height" multiplier="187:18" id="SzO-u0-LTq"/>
+                                    <constraint firstAttribute="height" constant="36" id="haU-pE-Gd1"/>
+                                    <constraint firstAttribute="width" constant="374" id="nRL-9e-BXn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="+ Add income/spending">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Check for destinations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDU-Bb-4Vo">
-                                <rect key="frame" x="39" y="287" width="270" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2500 RON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zZR-SE-9WF">
-                                <rect key="frame" x="251" y="149" width="132" height="34"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rome" translatesAutoresizingMaskIntoConstraints="NO" id="6gT-oZ-Vl9">
+                                <rect key="frame" x="-52" y="257" width="520" height="243"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="zZR-SE-9WF" secondAttribute="height" multiplier="66:17" id="Stt-rJ-UCl"/>
+                                    <constraint firstAttribute="height" constant="243" id="9NL-OA-MKV"/>
+                                    <constraint firstAttribute="width" secondItem="6gT-oZ-Vl9" secondAttribute="height" multiplier="520:243" id="Pe7-wa-js8"/>
+                                    <constraint firstAttribute="width" constant="520" id="X2f-cm-1Nt"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMQ-Z9-qZx">
+                                <rect key="frame" x="20" y="257" width="374" height="243"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="8fO-PQ-pDH"/>
+                                    <constraint firstAttribute="height" constant="243" id="UsR-7i-Tg7"/>
+                                    <constraint firstAttribute="width" secondItem="dMQ-Z9-qZx" secondAttribute="height" multiplier="374:243" id="plB-h1-8dX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="LOOK FOR A DESTINATION">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plans" translatesAutoresizingMaskIntoConstraints="NO" id="aLT-j7-W4a">
+                                <rect key="frame" x="20" y="526" width="374" height="231"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aLT-j7-W4a" secondAttribute="height" multiplier="34:21" id="OcF-H2-PQp"/>
+                                    <constraint firstAttribute="width" constant="374" id="SQz-7j-HrB"/>
+                                    <constraint firstAttribute="height" constant="231" id="tkL-YQ-lLx"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpk-f9-ppI">
+                                <rect key="frame" x="20" y="539" width="374" height="202"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="202" id="Xj9-yC-03f"/>
+                                    <constraint firstAttribute="width" constant="374" id="d2Q-Qo-IHn"/>
+                                    <constraint firstAttribute="width" secondItem="Vpk-f9-ppI" secondAttribute="height" multiplier="187:101" id="zQi-An-ihg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" title="MY PLANS">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p1j-Ma-Jj8">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <items>
+                                    <tabBarItem title="Search" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="1lO-hC-LjM"/>
+                                    <tabBarItem title="Add money" image="plus" catalog="system" selectedImage="plus" id="Qic-gg-jHY"/>
+                                    <tabBarItem title="Home" image="person.fill" catalog="system" selectedImage="person" id="54w-oG-Akg">
+                                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tabBarItem>
+                                    <tabBarItem title="My plans" image="airplane" catalog="system" selectedImage="airplane" id="f3V-hz-DSx"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="0xh-dd-jhT" firstAttribute="top" secondItem="1uZ-7y-eia" secondAttribute="top" constant="37" id="0bh-DA-6FT"/>
-                            <constraint firstItem="KjX-T9-Waq" firstAttribute="leading" secondItem="1uZ-7y-eia" secondAttribute="leading" constant="20" id="AzJ-Jo-ifB"/>
-                            <constraint firstItem="zZR-SE-9WF" firstAttribute="top" secondItem="0xh-dd-jhT" secondAttribute="bottom" constant="29" id="H15-oq-ZpO"/>
-                            <constraint firstItem="1uZ-7y-eia" firstAttribute="trailing" secondItem="KjX-T9-Waq" secondAttribute="trailing" constant="20" id="MMU-8a-xPl"/>
-                            <constraint firstItem="KjX-T9-Waq" firstAttribute="top" secondItem="zZR-SE-9WF" secondAttribute="bottom" constant="23" id="MRM-Sb-TDC"/>
+                            <constraint firstItem="cmj-4E-eC3" firstAttribute="leading" secondItem="1uZ-7y-eia" secondAttribute="leading" constant="20" id="1Uk-y3-A4E"/>
+                            <constraint firstItem="aLT-j7-W4a" firstAttribute="leading" secondItem="1uZ-7y-eia" secondAttribute="leading" constant="20" id="4i8-7s-IbP"/>
+                            <constraint firstItem="1uZ-7y-eia" firstAttribute="trailing" secondItem="Vpk-f9-ppI" secondAttribute="trailing" constant="20" id="CQ5-iA-ICD"/>
+                            <constraint firstItem="cmj-4E-eC3" firstAttribute="top" secondItem="1uZ-7y-eia" secondAttribute="top" constant="13" id="FK7-OF-j8v"/>
+                            <constraint firstItem="6gT-oZ-Vl9" firstAttribute="leading" secondItem="Wk9-11-Kev" secondAttribute="leading" constant="-52" id="HIu-Fw-BbG"/>
+                            <constraint firstItem="1uZ-7y-eia" firstAttribute="trailing" secondItem="PU7-lP-WzY" secondAttribute="trailing" constant="20" id="JYc-or-MjW"/>
+                            <constraint firstItem="1uZ-7y-eia" firstAttribute="trailing" secondItem="dMQ-Z9-qZx" secondAttribute="trailing" constant="20" id="JjD-eo-Bmz"/>
+                            <constraint firstItem="dMQ-Z9-qZx" firstAttribute="leading" secondItem="1uZ-7y-eia" secondAttribute="leading" constant="20" id="Qhn-qV-RTZ"/>
                             <constraint firstItem="K0K-IZ-6OW" firstAttribute="centerY" secondItem="Wk9-11-Kev" secondAttribute="centerY" id="Qiw-Vd-qLf"/>
-                            <constraint firstItem="KjX-T9-Waq" firstAttribute="centerX" secondItem="Wk9-11-Kev" secondAttribute="centerX" id="RtD-ML-GNt"/>
-                            <constraint firstItem="zZR-SE-9WF" firstAttribute="leading" secondItem="1uZ-7y-eia" secondAttribute="leading" constant="218" id="XXo-UN-wbJ"/>
+                            <constraint firstItem="aLT-j7-W4a" firstAttribute="top" secondItem="6gT-oZ-Vl9" secondAttribute="bottom" constant="26" id="Wab-is-Cui"/>
+                            <constraint firstItem="1uZ-7y-eia" firstAttribute="trailing" secondItem="aLT-j7-W4a" secondAttribute="trailing" constant="20" id="YDn-iY-P6E"/>
                             <constraint firstItem="K0K-IZ-6OW" firstAttribute="leading" secondItem="Wk9-11-Kev" secondAttribute="leading" constant="-106" id="YJ5-jl-zXj"/>
+                            <constraint firstItem="PU7-lP-WzY" firstAttribute="leading" secondItem="1uZ-7y-eia" secondAttribute="leading" constant="20" id="dDN-Vd-7Dd"/>
+                            <constraint firstItem="PU7-lP-WzY" firstAttribute="top" secondItem="cmj-4E-eC3" secondAttribute="bottom" constant="8" id="dom-gF-BrV"/>
                             <constraint firstAttribute="trailing" secondItem="K0K-IZ-6OW" secondAttribute="trailing" constant="-54" id="eM1-si-hC7"/>
+                            <constraint firstAttribute="trailing" secondItem="6gT-oZ-Vl9" secondAttribute="trailing" constant="-54" id="fOA-Wi-n7a"/>
+                            <constraint firstItem="1uZ-7y-eia" firstAttribute="trailing" secondItem="cmj-4E-eC3" secondAttribute="trailing" constant="20" id="jAZ-ot-J4V"/>
+                            <constraint firstItem="Vpk-f9-ppI" firstAttribute="top" secondItem="6gT-oZ-Vl9" secondAttribute="bottom" constant="39" id="my5-1E-92A"/>
                             <constraint firstItem="K0K-IZ-6OW" firstAttribute="top" secondItem="Wk9-11-Kev" secondAttribute="top" constant="-40" id="oay-1s-Mct"/>
+                            <constraint firstItem="Vpk-f9-ppI" firstAttribute="leading" secondItem="1uZ-7y-eia" secondAttribute="leading" constant="20" id="qlk-be-EV7"/>
                             <constraint firstItem="K0K-IZ-6OW" firstAttribute="centerX" secondItem="Wk9-11-Kev" secondAttribute="centerX" id="rHL-Eg-e5G"/>
-                            <constraint firstItem="0xh-dd-jhT" firstAttribute="leading" secondItem="1uZ-7y-eia" secondAttribute="leading" constant="39" id="rhH-KG-gO7"/>
-                            <constraint firstItem="0xh-dd-jhT" firstAttribute="top" secondItem="1uZ-7y-eia" secondAttribute="top" constant="37" id="tRH-zG-vu6"/>
-                            <constraint firstItem="0xh-dd-jhT" firstAttribute="leading" secondItem="1uZ-7y-eia" secondAttribute="leading" constant="39" id="vmL-vA-sIy"/>
+                            <constraint firstItem="dMQ-Z9-qZx" firstAttribute="top" secondItem="PU7-lP-WzY" secondAttribute="bottom" constant="26" id="xgP-2P-VDM"/>
                             <constraint firstAttribute="bottom" secondItem="K0K-IZ-6OW" secondAttribute="bottom" constant="-87" id="yIm-yw-RBl"/>
+                            <constraint firstItem="6gT-oZ-Vl9" firstAttribute="top" secondItem="PU7-lP-WzY" secondAttribute="bottom" constant="26" id="yuN-Wu-GUX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1uZ-7y-eia"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="0bh-DA-6FT"/>
-                                <exclude reference="vmL-vA-sIy"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7v3-b8-HbQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -314,7 +392,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Rome" width="275" height="183"/>
+        <image name="airplane" catalog="system" width="128" height="115"/>
         <image name="background" width="253" height="521"/>
         <image name="bg" width="240" height="394"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
+        <image name="plans" width="512" height="288"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>

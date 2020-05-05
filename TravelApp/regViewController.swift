@@ -38,18 +38,21 @@ class regViewController: UIViewController{
         self.lastNameTextField.resignFirstResponder()
         self.emailTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
-        
-
-        con.insertUser(firstName: "Catalin", lastName: "Danila", email: "catalin@gmail.com", password: "admin")
 
         if(firstNameTextField.text!.isEmpty) || (lastNameTextField.text!.isEmpty) || (emailTextField.text!.isEmpty) || (passwordTextField.text!.isEmpty){
             displayMessage(userMessage: "All fields must be filled in.")
             return
         }
         else{
-            print("\(firstNameTextField.text!) \(lastNameTextField.text!) \(emailTextField.text!) \(passwordTextField.text!)")
-            
+            con.insertUser(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
         }
+    }
+    
+    @IBAction func gotoLogin(_ sender: Any) {
+        
+        let SignInViewController = storyboard?.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+        SignInViewController.modalPresentationStyle = .fullScreen
+        self.present(SignInViewController, animated: true)
     }
     
     func displayMessage(userMessage: String) -> Void{

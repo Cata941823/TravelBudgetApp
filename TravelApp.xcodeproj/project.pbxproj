@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E048CBBB2461335500D743F4 /* PlatformaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E048CBBA2461335500D743F4 /* PlatformaViewController.swift */; };
 		E05B068D245F38E000B73562 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B068C245F38E000B73562 /* Destination.swift */; };
 		E0BB2A74245F13DF000E4B96 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BB2A73245F13DF000E4B96 /* Connection.swift */; };
 		E0BB2A76245F195C000E4B96 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BB2A75245F195C000E4B96 /* User.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E048CBBA2461335500D743F4 /* PlatformaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformaViewController.swift; sourceTree = "<group>"; };
 		E05B068C245F38E000B73562 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		E0BB2A73245F13DF000E4B96 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		E0BB2A75245F195C000E4B96 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				E0DB18E4245CA91E00FA0F82 /* SceneDelegate.swift */,
 				E0DB18E6245CA91E00FA0F82 /* ViewController.swift */,
 				E0CC7B3C245E162E008783C0 /* SignInViewController.swift */,
+				E048CBBA2461335500D743F4 /* PlatformaViewController.swift */,
 				E0CC7B40245E1F22008783C0 /* regViewController.swift */,
 				E0BB2A73245F13DF000E4B96 /* Connection.swift */,
 				E0DB18E8245CA91E00FA0F82 /* Main.storyboard */,
@@ -165,6 +168,7 @@
 				E0DB18E3245CA91E00FA0F82 /* AppDelegate.swift in Sources */,
 				E0DB18E5245CA91E00FA0F82 /* SceneDelegate.swift in Sources */,
 				E0CC7B3D245E162E008783C0 /* SignInViewController.swift in Sources */,
+				E048CBBB2461335500D743F4 /* PlatformaViewController.swift in Sources */,
 				E0CC7B41245E1F22008783C0 /* regViewController.swift in Sources */,
 				E05B068D245F38E000B73562 /* Destination.swift in Sources */,
 				E0BB2A76245F195C000E4B96 /* User.swift in Sources */,

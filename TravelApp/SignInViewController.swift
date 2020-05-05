@@ -26,8 +26,16 @@ class SignInViewController: UIViewController{
      override func didReceiveMemoryWarning() {
          super.didReceiveMemoryWarning()
      }
+
+     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+         self.view.endEditing(true)
+     }
     
     @IBAction func logInButtonPressed(_ sender: Any) {
+    
+        self.emailAddressTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+
         if (emailAddressTextField.text?.isEmpty)! ||  (passwordTextField.text?.isEmpty)!{
             displayMessage(userMessage: "All fields are required to fill in.")
             return
