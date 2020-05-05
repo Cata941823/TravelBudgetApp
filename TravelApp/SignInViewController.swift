@@ -18,9 +18,10 @@ class SignInViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         con.openDatabase()
-        con.createTable(query: "CREATE TABLE IF NOT EXISTS user (id INTEGER Primary KEY Autoincrement, firstname varchar(25) NOT NULL, lastname Varchar(25) NOT NULL, email Varchar(45) UNIQUE NOT NULL, password VARCHAR(25) NOT NULL, monthlyincome INTEGER, monthlyspending INTEGER);")
-        con.createTable(query: "CREATE TABLE IF NOT EXISTS destination (id INTEGER Primary KEY Autoincrement, city varchar(25) NOT NULL, country Varchar(25) NOT NULL, avgaccomodation INTEGER NOT NULL, avgfood INTEGER NOT NULL, avgplanetickets INTEGER NOT NULL, avgattractions INTEGER NOT NULL);")
+        con.createTable(query: "CREATE TABLE IF NOT EXISTS User (id INTEGER Primary KEY Autoincrement, firstname varchar(25) NOT NULL, lastname Varchar(25) NOT NULL, email Varchar(45) UNIQUE NOT NULL, password VARCHAR(25) NOT NULL, monthlyincome INTEGER, monthlyspending INTEGER);")
+        con.createTable(query: "CREATE TABLE IF NOT EXISTS Destination (id INTEGER Primary KEY Autoincrement, city varchar(25) NOT NULL, country Varchar(25) NOT NULL, avgaccomodation INTEGER NOT NULL, avgfood INTEGER NOT NULL, avgplanetickets INTEGER NOT NULL, avgattractions INTEGER NOT NULL);")
     }
      
      override func didReceiveMemoryWarning() {
@@ -46,10 +47,29 @@ class SignInViewController: UIViewController{
             if(con.logIn(email: email, password: pass))
             {
                 print("Login worked!\n")
+                var user: User!
                 
-                let PlatformaViewController = storyboard?.instantiateViewController(withIdentifier: "PlatformaViewController") as! PlatformaViewController
-                PlatformaViewController.modalPresentationStyle = .fullScreen
-                self.present(PlatformaViewController, animated: true)
+                //var userList: [User] = []
+                
+                let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let vc : PlatformaViewController = mainStoryboard.instantiateViewController(withIdentifier: "PlatformaViewController") as! PlatformaViewController
+                con.getAllUser()
+                user = con.getUser(email: email)
+                /*
+                for user in userList{
+                    print("\(user.id) \(String(describing: user.firstname)) \(String(describing: user.lastname)) \(String(describing: user.email)) \(user.income) \(user.spendings)\n")
+                }
+                */
+                user = con.getUser(email: email)
+                vc.id = user.id
+                vc.fullName = user.lastname! + " " + user.firstname!
+                vc.email = user.email!
+                vc.income = user.income
+                vc.spendings = user.spendings
+                
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+                
             }
             else{
                 print("NOT WORKING\n")

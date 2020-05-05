@@ -11,10 +11,10 @@ import Foundation
 class User {
  
     var id: Int
-    var firstname: String?
-    var lastname: String?
-    var email: String?
-    var password: String?
+    var firstname: String!
+    var lastname: String!
+    var email: String!
+    var password: String!
     var income: Int
     var spendings: Int
     

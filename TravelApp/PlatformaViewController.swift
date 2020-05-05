@@ -10,13 +10,36 @@ import UIKit
 
 class PlatformaViewController: UIViewController {
 
+    @IBOutlet weak var sumLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    var id: Int!
+    var fullName:String = ""
+    var sum:Int = 0
+    var email: String = ""
+    var income: Int = 0
+    var spendings: Int = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        nameLabel?.text = fullName
+        sum = income - spendings
+        sumLabel?.text = String(sum) + " RON"
+        
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func addMoney(_ sender: Any) {
+    }
+    
+    @IBAction func searchDestinations(_ sender: Any) {
+    }
+    
+    @IBAction func goToMyPlans(_ sender: Any) {
+    }
+    
     /*
     // MARK: - Navigation
 

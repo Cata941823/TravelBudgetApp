@@ -40,54 +40,31 @@ class Connection: UIViewController {
     }
     
     func insertUser(firstName: String, lastName: String, email: String, password: String){
-        print("\nMACAR A INTRAT AICI\n")
-        //creating a statement
-        var stmt: OpaquePointer?
         
-        //the insert query
-        let insertString = "INSERT INTO User (firstname, lastname, email, password) VALUES (?,?,?,?)"
-        
-        //preparing the query
-        if sqlite3_prepare(db, insertString, -1, &stmt, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Error preparing to insert: \(errmsg)")
-            return
-        }
-        
-        //binding the parameters
-        if sqlite3_bind_text(stmt, 1, firstName, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Failure binding first name: \(errmsg)")
-            return
-        }
-        
-        if sqlite3_bind_text(stmt, 2, lastName, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Failure binding last name: \(errmsg)")
-            return
-        }
-        
-        if sqlite3_bind_text(stmt, 3, email, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Failure binding e-mail: \(errmsg)")
-            return
-        }
-        
-        if sqlite3_bind_text(stmt, 4, password, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Failure binding password: \(errmsg)")
-            return
-        }
-        
-        //executing the query to insert values
-        if sqlite3_step(stmt) != SQLITE_DONE {
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Failure inserting user: \(errmsg)")
-            return
-        }
-        
-        //displaying a success message
-        print("User saved successfully.")
+        let insertStatementString = "INSERT INTO User (firstname, lastname, email, password) VALUES (?, ?,?,?);"
+        var insertStatement: OpaquePointer?
+          // 1
+          if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            let firstn: NSString = firstName as NSString
+            let lastn: NSString = lastName as NSString
+            let emailn: NSString = email as NSString
+            let pass: NSString = password as NSString
+                // 3
+                sqlite3_bind_text(insertStatement, 1, firstn.utf8String, -1, nil)
+                sqlite3_bind_text(insertStatement, 2, lastn.utf8String, -1, nil)
+                sqlite3_bind_text(insertStatement, 3, emailn.utf8String, -1, nil)
+                sqlite3_bind_text(insertStatement, 4, pass.utf8String, -1, nil)
+                // 4
+                if sqlite3_step(insertStatement) == SQLITE_DONE {
+                    print("\nSuccessfully inserted row.")
+                } else {
+                    print("\nCould not insert row.")
+                }
+            } else {
+                print("\nINSERT statement is not prepared.")
+            }
+            // 5
+            sqlite3_finalize(insertStatement)
     }
     
     func logIn(email: String, password: String) -> Bool {
@@ -168,7 +145,7 @@ class Connection: UIViewController {
         destinationList.removeAll()
             
         //this is our select query
-        let queryString = "SELECT * FROM Users where lower(city) LIKE lower(%\(destination)%) OR lower(country) LIKE lower(%\(destination)%);"
+        let queryString = "SELECT * FROM User where lower(city) LIKE lower(%\(destination)%) OR lower(country) LIKE lower(%\(destination)%);"
             
         //statement pointer
         var stmt:OpaquePointer?
@@ -193,6 +170,144 @@ class Connection: UIViewController {
             destinationList.append(Destination(id: Int(id), city: String(describing: city), country: String(describing: country), avgaccomodation: Int(avgaccomodation), avgfood: Int(avgfood), avgplanetickets: Int(avgplanetickets), avgattractions: Int(avgattractions)))
         }
         return destinationList
+    }
+    
+    func getAllUser(){
+        let queryStatementString = "SELECT * FROM User;"
+        var queryStatement: OpaquePointer?
+        
+        // 1
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            // 2
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                // 3
+                let id = sqlite3_column_int(queryStatement, 0)
+                // 4
+                guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
+                    print("Query result is nil")
+                    return
+                }
+                
+                guard let queryResultCol2 = sqlite3_column_text(queryStatement, 2) else {
+                    print("Query result is nil")
+                    return
+                }
+                
+                guard let queryResultCol3 = sqlite3_column_text(queryStatement, 3) else {
+                    print("Query result is nil")
+                    return
+                }
+                
+                guard let queryResultCol4 = sqlite3_column_text(queryStatement, 4) else {
+                    print("Query result is nil")
+                    return
+                }
+                
+                let name = String(cString: queryResultCol1)
+                let fname = String(cString: queryResultCol2)
+                let email = String(cString: queryResultCol3)
+                let pass = String(cString: queryResultCol4)
+                // 5
+                print("\(id) | \(name) | \(fname) | \(email) | \(pass)")
+            }
+        } else {
+            // 6
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        // 7
+        sqlite3_finalize(queryStatement)
+    }
+    
+    // MARK: - Cautare Utilizator
+    
+    func getUser(email: String) -> User {
+        let queryStatementString = "SELECT * FROM User WHERE email LIKE '%\(email)%';"
+        var queryStatement: OpaquePointer?
+        var user: User!
+        
+        // 1
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            // 2
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                
+                let id = sqlite3_column_int(queryStatement, 0)
+                
+                guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
+                    print("Query result is nil")
+                    return user
+                }
+                
+                guard let queryResultCol2 = sqlite3_column_text(queryStatement, 2) else {
+                    print("Query result is nil")
+                    return user
+                }
+                
+                guard let queryResultCol3 = sqlite3_column_text(queryStatement, 3) else {
+                    print("Query result is nil")
+                    return user
+                }
+                
+                guard let queryResultCol4 = sqlite3_column_text(queryStatement, 4) else {
+                    print("Query result is nil")
+                    return user
+                }
+                
+                let inc = sqlite3_column_int(queryStatement, 5)
+                let spend = sqlite3_column_int(queryStatement, 6)
+                
+                let name = String(cString: queryResultCol1)
+                let fname = String(cString: queryResultCol2)
+                let email = String(cString: queryResultCol3)
+                let pass = String(cString: queryResultCol4)
+                // 5
+                print("\(id) | \(name) | \(fname) | \(email) | \(pass) | \(inc) | \(spend)")
+
+                user = User.init(id: Int(id), firstname: name, lastname: fname, email: email, password: pass, income: Int(inc), spendings: Int(spend))
+            }
+        } else {
+            // 6
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        // 7
+        sqlite3_finalize(queryStatement)
+        return user
+        
+/*        var user: User!
+            
+        print("1\n")
+        //this is our select query
+        let queryString = "SELECT * FROM User where email LIKE '%\(email)%';"
+            
+        //statement pointer
+        var stmt:OpaquePointer?
+            
+        //preparing the query
+        if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("Error preparing select: \(errmsg)")
+            return user
+        }
+        
+        //traversing through all the records
+            print("3 junior")
+            let id = sqlite3_column_int(stmt, 0)
+            print("\(String(cString: sqlite3_column_text(stmt, 1)))")
+            let firstname = String(cString: sqlite3_column_text(stmt, 1))
+            let lastname = String(cString: sqlite3_column_text(stmt, 2))
+            let email = String(cString: sqlite3_column_text(stmt, 3))
+            let income = sqlite3_column_int(stmt, 5)
+            let spendings = sqlite3_column_int(stmt, 6)
+
+            print("3\n")
+            print("\(id) \(firstname) \(lastname) \(email) \(income) \(spendings)")
+            
+            user! = User(id: Int(id), firstname: String(describing: firstname), lastname: String(describing: lastname), email: String(email), password: String(" "), income: Int(income), spendings: Int(spendings))
+        
+        
+        print("4\n")
+        return user*/
     }
     
     
