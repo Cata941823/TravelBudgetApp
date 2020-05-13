@@ -21,7 +21,7 @@ class SignInViewController: UIViewController{
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         con.openDatabase()
         con.createTable(query: "CREATE TABLE IF NOT EXISTS User (id INTEGER Primary KEY Autoincrement, firstname varchar(25) NOT NULL, lastname Varchar(25) NOT NULL, email Varchar(45) UNIQUE NOT NULL, password VARCHAR(25) NOT NULL, monthlyincome INTEGER, monthlyspending INTEGER);")
-        con.createTable(query: "CREATE TABLE IF NOT EXISTS Destination (id INTEGER Primary KEY Autoincrement, city varchar(25) NOT NULL, country Varchar(25) NOT NULL, avgaccomodation INTEGER NOT NULL, avgfood INTEGER NOT NULL, avgplanetickets INTEGER NOT NULL, avgattractions INTEGER NOT NULL);")
+        con.createTable(query: "CREATE TABLE IF NOT EXISTS Destination (id INTEGER Primary KEY Autoincrement, city varchar(25) NOT NULL, country Varchar(25) NOT NULL, avgaccomodation INTEGER NOT NULL, avgfood INTEGER NOT NULL, avgplanetickets INTEGER NOT NULL, avgattractions INTEGER NOT NULL, image BLOB);")
         con.getAllUser()
         con.closeDB()
     }

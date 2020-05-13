@@ -1,30 +1,80 @@
-//
-//  searchDestViewController.swift
-//  TravelApp
-//
-//  Created by user172616 on 5/13/20.
-//  Copyright © 2020 user172616. All rights reserved.
-//
-
 import UIKit
 
-class searchDestViewController: UIViewController {
+class searchDestViewController: UIViewController{
+    var destinations = [Destination]()
+    var cityNameArr = [String]()
+    
+    var searchCity = [String]()
+    var searching = false
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tblView: UITableView!
+    var email: String!
+    
+    var con: Connection = Connection.init()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        con.openDatabase()
+        destinations = con.getAllDestinations()
+        for d in destinations{
+            print("\(d.city)\n")
+            cityNameArr.append(d.city!)
+        }
+        con.closeDB()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
-    */
+    
+    @IBAction func backToLogin(_ sender: Any) {
+        con.openDatabase()
+        var user: User!
+        
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : PlatformaViewController = mainStoryboard.instantiateViewController(withIdentifier: "PlatformaViewController") as! PlatformaViewController
+        con.getAllUser()
 
+        user = con.getUser(email: self.email)
+        con.closeDB()
+        vc.id = user.id
+        vc.fullName = user.lastname! + " " + user.firstname!
+        vc.email = user.email!
+        vc.income = user.income
+        vc.spendings = user.spendings
+        
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
+}
+
+extension searchDestViewController: UITableViewDataSource, UITableViewDelegate{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searching {
+            return searchCity.count
+        } else{
+            return cityNameArr.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if searching{
+            cell?.textLabel?.text = searchCity[indexPath.row]
+        } else{
+            cell?.textLabel?.text = cityNameArr[indexPath.row]
+        }
+        return cell!
+    }
+    
+}
+
+extension searchDestViewController: UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        searchCity = cityNameArr.filter({$0.prefix(searchText.count) == searchText})
+        searching = true
+        tblView.reloadData()
+    }
 }
