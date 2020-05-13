@@ -72,53 +72,30 @@ class Connection: UIViewController {
     }
     
     func logIn(email: String, password: String) -> Bool {
-        var userList = [User]()
+        var loggedIn: Bool?
         
-        //first empty the list of heroes
-        userList.removeAll()
-        
-        //this is our select query
-        let queryString = "SELECT * FROM User where email = ? and password = ?;"
-        
-        //statement pointer
-        var stmt:OpaquePointer?
-        
-        //preparing the query
-        if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Error preparing insert: \(errmsg)")
-            return false
-        }
-        
-        //binding the parameters
-        if sqlite3_bind_text(stmt, 1, email, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Failure binding e-mail: \(errmsg)")
-            return false
-        }
-        
-        if sqlite3_bind_text(stmt, 2, password, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Failure binding password: \(errmsg)")
-            return false
-        }
-    
-        //traversing through all the records
-        if(sqlite3_step(stmt) == SQLITE_ROW){
+        let queryStatementString = "SELECT * FROM User WHERE email = '\(email)' AND password = '\(password)';"
 
-            sqlite3_finalize(stmt)
-
-            return true
-        }
-        else{
-
-            sqlite3_finalize(stmt)
-
-            return false
+        var queryStatement: OpaquePointer?
+        
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            
+            if sqlite3_step(queryStatement) == SQLITE_ROW {
+                print("User found. Succesfully logged in.")
+                loggedIn = true
+            } else {
+                print("\nUser not found.")
+                loggedIn = false
+            }
+        } else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
         }
         
+        sqlite3_finalize(queryStatement)
+        return loggedIn!
     }
-
+    
     func addIncome(email: String, income: String){
         var user: User!
         var lastIncome: Int = 0

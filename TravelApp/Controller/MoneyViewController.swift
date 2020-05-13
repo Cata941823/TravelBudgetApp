@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoneyViewController: UIViewController {
+class MoneyViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var incomeTextField: UITextField!
     @IBOutlet weak var spendingsTextField: UITextField!
@@ -20,10 +20,17 @@ class MoneyViewController: UIViewController {
         
         super.viewDidLoad()
         //con.openDatabase()
+        self.incomeTextField.delegate = self
+        self.spendingsTextField.delegate = self
         
     }
     
-
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isSuperset(of: characterSet)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

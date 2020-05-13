@@ -42,6 +42,10 @@ class PlatformaViewController: UIViewController {
     }
     
     @IBAction func searchDestinations(_ sender: Any) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : searchDestViewController = mainStoryboard.instantiateViewController(withIdentifier: "searchDestViewController") as! searchDestViewController
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func goToMyPlans(_ sender: Any) {

@@ -33,6 +33,9 @@ class regViewController: UIViewController{
 
     @IBAction func signUpButtonPressed(_ sender: Any) {
 
+        con.closeDB()
+        con.openDatabase()
+        
         self.firstNameTextField.resignFirstResponder()
         self.lastNameTextField.resignFirstResponder()
         self.emailTextField.resignFirstResponder()
@@ -43,11 +46,9 @@ class regViewController: UIViewController{
             return
         }
         else{
-
-            con.openDatabase()
             con.insertUser(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
-            con.closeDB()
         }
+        con.closeDB()
     }
     
     @IBAction func gotoLogin(_ sender: Any) {
