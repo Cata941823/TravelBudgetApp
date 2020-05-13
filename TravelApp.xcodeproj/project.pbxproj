@@ -13,6 +13,7 @@
 		E0BB2A76245F195C000E4B96 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BB2A75245F195C000E4B96 /* User.swift */; };
 		E0CC7B3D245E162E008783C0 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CC7B3C245E162E008783C0 /* SignInViewController.swift */; };
 		E0CC7B41245E1F22008783C0 /* regViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CC7B40245E1F22008783C0 /* regViewController.swift */; };
+		E0D82CC2246AD9F400F4B628 /* MoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D82CC1246AD9F400F4B628 /* MoneyViewController.swift */; };
 		E0DB18E3245CA91E00FA0F82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB18E2245CA91E00FA0F82 /* AppDelegate.swift */; };
 		E0DB18E5245CA91E00FA0F82 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB18E4245CA91E00FA0F82 /* SceneDelegate.swift */; };
 		E0DB18E7245CA91E00FA0F82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB18E6245CA91E00FA0F82 /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 		E0BB2A75245F195C000E4B96 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0CC7B3C245E162E008783C0 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		E0CC7B40245E1F22008783C0 /* regViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = regViewController.swift; sourceTree = "<group>"; };
+		E0D82CC1246AD9F400F4B628 /* MoneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyViewController.swift; sourceTree = "<group>"; };
 		E0DB18DF245CA91E00FA0F82 /* TravelApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TravelApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0DB18E2245CA91E00FA0F82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0DB18E4245CA91E00FA0F82 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +55,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E0D82CC4246ADA3200F4B628 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				E0DB18E4245CA91E00FA0F82 /* SceneDelegate.swift */,
+				E0DB18E2245CA91E00FA0F82 /* AppDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		E0D82CC5246ADA4500F4B628 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E0DB18E6245CA91E00FA0F82 /* ViewController.swift */,
+				E0CC7B3C245E162E008783C0 /* SignInViewController.swift */,
+				E0CC7B40245E1F22008783C0 /* regViewController.swift */,
+				E048CBBA2461335500D743F4 /* PlatformaViewController.swift */,
+				E0D82CC1246AD9F400F4B628 /* MoneyViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E0D82CC7246ADA6A00F4B628 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E0BB2A75245F195C000E4B96 /* User.swift */,
+				E05B068C245F38E000B73562 /* Destination.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E0D82CC8246ADA8000F4B628 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				E0DB18E8245CA91E00FA0F82 /* Main.storyboard */,
+				E0DB18ED245CA91E00FA0F82 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		E0DB18D6245CA91E00FA0F82 = {
 			isa = PBXGroup;
 			children = (
@@ -72,19 +113,13 @@
 		E0DB18E1245CA91E00FA0F82 /* TravelApp */ = {
 			isa = PBXGroup;
 			children = (
-				E0DB18E2245CA91E00FA0F82 /* AppDelegate.swift */,
-				E0DB18E4245CA91E00FA0F82 /* SceneDelegate.swift */,
-				E0DB18E6245CA91E00FA0F82 /* ViewController.swift */,
-				E0CC7B3C245E162E008783C0 /* SignInViewController.swift */,
-				E048CBBA2461335500D743F4 /* PlatformaViewController.swift */,
-				E0CC7B40245E1F22008783C0 /* regViewController.swift */,
-				E0BB2A73245F13DF000E4B96 /* Connection.swift */,
-				E0DB18E8245CA91E00FA0F82 /* Main.storyboard */,
+				E0D82CC8246ADA8000F4B628 /* Storyboard */,
+				E0D82CC7246ADA6A00F4B628 /* Model */,
+				E0D82CC5246ADA4500F4B628 /* Controller */,
+				E0D82CC4246ADA3200F4B628 /* Delegates */,
 				E0DB18EB245CA91E00FA0F82 /* Assets.xcassets */,
-				E0DB18ED245CA91E00FA0F82 /* LaunchScreen.storyboard */,
+				E0BB2A73245F13DF000E4B96 /* Connection.swift */,
 				E0DB18F0245CA91E00FA0F82 /* Info.plist */,
-				E0BB2A75245F195C000E4B96 /* User.swift */,
-				E05B068C245F38E000B73562 /* Destination.swift */,
 				E0F3E70E245EFA9800A3FA24 /* libsqlite3.tbd */,
 				E0F3E710245EFADB00A3FA24 /* TravelApp-Bridging-Header.h */,
 			);
@@ -166,6 +201,7 @@
 				E0DB18E7245CA91E00FA0F82 /* ViewController.swift in Sources */,
 				E0BB2A74245F13DF000E4B96 /* Connection.swift in Sources */,
 				E0DB18E3245CA91E00FA0F82 /* AppDelegate.swift in Sources */,
+				E0D82CC2246AD9F400F4B628 /* MoneyViewController.swift in Sources */,
 				E0DB18E5245CA91E00FA0F82 /* SceneDelegate.swift in Sources */,
 				E0CC7B3D245E162E008783C0 /* SignInViewController.swift in Sources */,
 				E048CBBB2461335500D743F4 /* PlatformaViewController.swift in Sources */,

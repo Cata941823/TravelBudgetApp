@@ -67,6 +67,10 @@ class Connection: UIViewController {
             sqlite3_finalize(insertStatement)
     }
     
+    func closeDB(){
+        sqlite3_close(db)
+    }
+    
     func logIn(email: String, password: String) -> Bool {
         var userList = [User]()
         
@@ -101,41 +105,74 @@ class Connection: UIViewController {
     
         //traversing through all the records
         if(sqlite3_step(stmt) == SQLITE_ROW){
+
+            sqlite3_finalize(stmt)
+
             return true
         }
         else{
+
+            sqlite3_finalize(stmt)
+
             return false
         }
+        
     }
 
-    func addIncome(email: String, income: Int){
-        //creating a statement
-        var stmt: OpaquePointer?
+    func addIncome(email: String, income: String){
+        var user: User!
+        var lastIncome: Int = 0
+        var newIncome: Int = 0
+        var actualIncome: Int = 0
+        user = self.getUser(email: email)
         
-        //the insert query
-        let alterString = "UPDATE User SET monthlyincome = \(income) WHERE email = \(email);"
+        lastIncome = Int(user.income)
+        actualIncome = Int(income)!
+        newIncome = lastIncome + actualIncome
         
-        //preparing the query
-        if sqlite3_prepare(db, alterString, -1, &stmt, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Error preparing to alter: \(errmsg)")
-            return
+        let updateStatementString = "UPDATE User SET monthlyincome = \(newIncome) WHERE email = '\(email)';"
+        var updateStatement: OpaquePointer?
+        if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            if sqlite3_step(updateStatement) == SQLITE_DONE {
+              print("\nSuccessfully updated row.")
+            } else {
+              print("\nCould not update row.")
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("Error preparing to alter: \(errmsg)")
+                return
+            }
+        } else {
+            print("\nUPDATE statement is not prepared")
         }
+        sqlite3_finalize(updateStatement)
     }
 
-    func addIncome(email: String, spending: Int){
-        //creating a statement
-        var stmt: OpaquePointer?
+    func addSpending(email: String, spending: String){
+        var user: User!
+        var lastSpending: Int = 0
+        var newSpending: Int = 0
+        var actualSpending: Int = 0
+        user = self.getUser(email: email)
         
-        //the insert query
-        let alterString = "UPDATE User SET monthlyspending = \(spending) WHERE email = \(email);"
+        lastSpending = Int(user.spendings)
+        actualSpending = Int(spending)!
+        newSpending = lastSpending + actualSpending
         
-        //preparing the query
-        if sqlite3_prepare(db, alterString, -1, &stmt, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("Error preparing to alter: \(errmsg)")
-            return
+        let updateStatementString = "UPDATE User SET monthlyspending = \(newSpending) WHERE email = '\(email)';"
+        var updateStatement: OpaquePointer?
+        if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            if sqlite3_step(updateStatement) == SQLITE_DONE {
+              print("\nSuccessfully updated row.")
+            } else {
+              print("\nCould not update row.")
+                let errmsg = String(cString: sqlite3_errmsg(db)!)
+                print("Error preparing to alter: \(errmsg)")
+                return
+            }
+        } else {
+            print("\nUPDATE statement is not prepared")
         }
+        sqlite3_finalize(updateStatement)
     }
     
     func searchDestination(destination: String) -> [Destination] {
@@ -171,6 +208,43 @@ class Connection: UIViewController {
         }
         return destinationList
     }
+    
+    func getUserByEmail(email: String) -> (String, String){
+        let queryStatementString = "SELECT * FROM User WHERE email = \(email);"
+        var queryStatement: OpaquePointer?
+        var monthlyIncome: String?
+        var monthlySpending: String?
+        
+        // 1
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            // 2
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                
+                // 6
+                guard let queryResultCol1 = sqlite3_column_text(queryStatement, 6) else {
+                    print("Query result is nil")
+                    return (monthlyIncome!, monthlySpending!)
+                }
+                // 7
+                guard let queryResultCol2 = sqlite3_column_text(queryStatement, 7) else {
+                    print("Query result is nil")
+                    return (monthlyIncome!, monthlySpending!)
+                }
+                
+                monthlyIncome = String(cString: queryResultCol1)
+                monthlySpending = String(cString: queryResultCol2)
+            
+            }
+        } else {
+            // 6
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        // 7
+        sqlite3_finalize(queryStatement)
+        return (monthlyIncome!, monthlySpending!)
+    }
+    
     
     func getAllUser(){
         let queryStatementString = "SELECT * FROM User;"

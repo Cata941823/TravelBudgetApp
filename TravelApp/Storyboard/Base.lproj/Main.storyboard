@@ -428,6 +428,131 @@
             </objects>
             <point key="canvasLocation" x="-1000.0000000000001" y="393.75"/>
         </scene>
+        <!--Money View Controller-->
+        <scene sceneID="8DY-2D-jCW">
+            <objects>
+                <viewController storyboardIdentifier="MoneyViewController" id="1da-rU-y3w" customClass="MoneyViewController" customModule="TravelApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vLd-cb-Rfi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="DRq-TZ-7Td">
+                                <rect key="frame" x="-67" y="-18" width="548" height="914"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add income" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8n-7E-nlE">
+                                <rect key="frame" x="65" y="120" width="144" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="m8n-7E-nlE" secondAttribute="height" multiplier="72:17" id="fvr-oO-5zN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+0.00 RON" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D7f-RO-dfw">
+                                <rect key="frame" x="65" y="177" width="284" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="D7f-RO-dfw" secondAttribute="height" multiplier="142:17" id="DMn-R9-Gf7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QvJ-Gq-t9K">
+                                <rect key="frame" x="65" y="219" width="284" height="42"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QvJ-Gq-t9K" secondAttribute="height" multiplier="142:21" id="3cr-dr-DYU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="ADD">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addIncome:" destination="1da-rU-y3w" eventType="touchUpInside" id="GqZ-ga-WRc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add spendings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwm-eW-Z9O">
+                                <rect key="frame" x="65" y="316" width="181" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Vwm-eW-Z9O" secondAttribute="height" multiplier="181:34" id="1MR-d5-M1y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="-0.00 RON" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VDl-on-jEe">
+                                <rect key="frame" x="65" y="377" width="284" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VDl-on-jEe" secondAttribute="height" multiplier="142:17" id="n0i-z0-q1L"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cwK-9a-UcY">
+                                <rect key="frame" x="65" y="419" width="284" height="41"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cwK-9a-UcY" secondAttribute="height" multiplier="284:41" id="2UD-8R-d1T"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="ADD">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="addSpendings:" destination="1da-rU-y3w" eventType="touchUpInside" id="9Bf-RI-SjB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TUn-2I-uFn">
+                                <rect key="frame" x="155" y="522" width="104" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="TUn-2I-uFn" secondAttribute="height" multiplier="104:35" id="OWg-My-DF4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="&lt; Back">
+                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToPlatform:" destination="1da-rU-y3w" eventType="touchUpInside" id="Wdc-Fj-5gi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="D7f-RO-dfw" firstAttribute="top" secondItem="m8n-7E-nlE" secondAttribute="bottom" constant="23" id="09s-Hd-frN"/>
+                            <constraint firstAttribute="bottom" secondItem="DRq-TZ-7Td" secondAttribute="bottom" id="2ee-yP-pSw"/>
+                            <constraint firstItem="m8n-7E-nlE" firstAttribute="leading" secondItem="XJk-2y-3ng" secondAttribute="leading" constant="65" id="4S8-ln-zgy"/>
+                            <constraint firstItem="VDl-on-jEe" firstAttribute="top" secondItem="Vwm-eW-Z9O" secondAttribute="bottom" constant="27" id="67H-hI-hPS"/>
+                            <constraint firstItem="Vwm-eW-Z9O" firstAttribute="top" secondItem="QvJ-Gq-t9K" secondAttribute="bottom" constant="55" id="A2c-Rx-FaR"/>
+                            <constraint firstItem="Vwm-eW-Z9O" firstAttribute="leading" secondItem="XJk-2y-3ng" secondAttribute="leading" constant="65" id="AQq-2Q-BEc"/>
+                            <constraint firstAttribute="trailing" secondItem="DRq-TZ-7Td" secondAttribute="trailing" constant="-67" id="EUC-vH-P4z"/>
+                            <constraint firstItem="XJk-2y-3ng" firstAttribute="trailing" secondItem="D7f-RO-dfw" secondAttribute="trailing" constant="65" id="FGs-cZ-5hJ"/>
+                            <constraint firstItem="cwK-9a-UcY" firstAttribute="leading" secondItem="XJk-2y-3ng" secondAttribute="leading" constant="65" id="Fs5-s5-Z3K"/>
+                            <constraint firstItem="QvJ-Gq-t9K" firstAttribute="top" secondItem="D7f-RO-dfw" secondAttribute="bottom" constant="8" id="GPE-7S-45O"/>
+                            <constraint firstItem="DRq-TZ-7Td" firstAttribute="leading" secondItem="vLd-cb-Rfi" secondAttribute="leading" constant="-67" id="I6P-Pp-9Gz"/>
+                            <constraint firstItem="cwK-9a-UcY" firstAttribute="top" secondItem="VDl-on-jEe" secondAttribute="bottom" constant="8" id="az1-rm-IdF"/>
+                            <constraint firstItem="TUn-2I-uFn" firstAttribute="top" secondItem="cwK-9a-UcY" secondAttribute="bottom" constant="62" id="bbm-le-1Kr"/>
+                            <constraint firstItem="XJk-2y-3ng" firstAttribute="trailing" secondItem="QvJ-Gq-t9K" secondAttribute="trailing" constant="65" id="d87-2h-1mx"/>
+                            <constraint firstItem="XJk-2y-3ng" firstAttribute="trailing" secondItem="VDl-on-jEe" secondAttribute="trailing" constant="65" id="edD-1N-2WS"/>
+                            <constraint firstItem="DRq-TZ-7Td" firstAttribute="top" secondItem="vLd-cb-Rfi" secondAttribute="top" constant="-18" id="f55-90-eRL"/>
+                            <constraint firstItem="XJk-2y-3ng" firstAttribute="trailing" secondItem="cwK-9a-UcY" secondAttribute="trailing" constant="65" id="fYr-ZP-DD4"/>
+                            <constraint firstItem="D7f-RO-dfw" firstAttribute="leading" secondItem="XJk-2y-3ng" secondAttribute="leading" constant="65" id="iYu-YF-rbP"/>
+                            <constraint firstItem="TUn-2I-uFn" firstAttribute="leading" secondItem="XJk-2y-3ng" secondAttribute="leading" constant="155" id="lGU-2B-PWd"/>
+                            <constraint firstItem="m8n-7E-nlE" firstAttribute="top" secondItem="XJk-2y-3ng" secondAttribute="top" constant="76" id="nkU-1J-ntq"/>
+                            <constraint firstItem="XJk-2y-3ng" firstAttribute="trailing" secondItem="TUn-2I-uFn" secondAttribute="trailing" constant="155" id="nuR-go-COJ"/>
+                            <constraint firstItem="QvJ-Gq-t9K" firstAttribute="leading" secondItem="XJk-2y-3ng" secondAttribute="leading" constant="65" id="vzc-9T-up9"/>
+                            <constraint firstItem="VDl-on-jEe" firstAttribute="leading" secondItem="XJk-2y-3ng" secondAttribute="leading" constant="65" id="y9V-0m-kyd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XJk-2y-3ng"/>
+                    </view>
+                    <connections>
+                        <outlet property="incomeTextField" destination="D7f-RO-dfw" id="vfn-pZ-Jg8"/>
+                        <outlet property="spendingsTextField" destination="VDl-on-jEe" id="eDL-aA-Q2r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ie-kB-IHw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="37.681159420289859" y="359.59821428571428"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Rome" width="275" height="183"/>

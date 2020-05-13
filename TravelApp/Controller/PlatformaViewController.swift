@@ -26,12 +26,19 @@ class PlatformaViewController: UIViewController {
 
         nameLabel?.text = fullName
         sum = income - spendings
+        print("\(sum) \(spendings) \(income)")
         sumLabel?.text = String(sum) + " RON"
         
         // Do any additional setup after loading the view.
     }
     
     @IBAction func addMoney(_ sender: Any) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : MoneyViewController = mainStoryboard.instantiateViewController(withIdentifier: "MoneyViewController") as! MoneyViewController
+        vc.email = self.email
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+        
     }
     
     @IBAction func searchDestinations(_ sender: Any) {

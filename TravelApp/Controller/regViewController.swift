@@ -21,7 +21,6 @@ class regViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        con.openDatabase()
     }
         
     override func didReceiveMemoryWarning() {
@@ -44,7 +43,10 @@ class regViewController: UIViewController{
             return
         }
         else{
+
+            con.openDatabase()
             con.insertUser(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
+            con.closeDB()
         }
     }
     
@@ -63,7 +65,7 @@ class regViewController: UIViewController{
              let OKAction = UIAlertAction(title: "OK", style: .default){
                  (action: UIAlertAction!) in
                  DispatchQueue.main.async{
-                     self.dismiss(animated: true, completion: nil)
+                     //self.dismiss(animated: true, completion: nil)
                  }
              }
              alertController.addAction(OKAction)
