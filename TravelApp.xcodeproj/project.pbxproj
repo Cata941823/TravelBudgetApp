@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E0247859246BDA2500C14737 /* searchDestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0247858246BDA2500C14737 /* searchDestViewController.swift */; };
+		E02606F9246D4185009A1483 /* DetailDestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02606F8246D4185009A1483 /* DetailDestViewController.swift */; };
+		E02606FB246D445C009A1483 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = E02606FA246D445B009A1483 /* Images */; };
 		E048CBBB2461335500D743F4 /* PlatformaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E048CBBA2461335500D743F4 /* PlatformaViewController.swift */; };
 		E05B068D245F38E000B73562 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B068C245F38E000B73562 /* Destination.swift */; };
 		E0BB2A74245F13DF000E4B96 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BB2A73245F13DF000E4B96 /* Connection.swift */; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		E0247858246BDA2500C14737 /* searchDestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchDestViewController.swift; sourceTree = "<group>"; };
+		E02606F8246D4185009A1483 /* DetailDestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDestViewController.swift; sourceTree = "<group>"; };
+		E02606FA246D445B009A1483 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = ../../Images; sourceTree = "<group>"; };
 		E048CBBA2461335500D743F4 /* PlatformaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformaViewController.swift; sourceTree = "<group>"; };
 		E05B068C245F38E000B73562 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		E0BB2A73245F13DF000E4B96 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
@@ -75,6 +79,7 @@
 				E048CBBA2461335500D743F4 /* PlatformaViewController.swift */,
 				E0D82CC1246AD9F400F4B628 /* MoneyViewController.swift */,
 				E0247858246BDA2500C14737 /* searchDestViewController.swift */,
+				E02606F8246D4185009A1483 /* DetailDestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 				E0D82CC4246ADA3200F4B628 /* Delegates */,
 				E0DB18EB245CA91E00FA0F82 /* Assets.xcassets */,
 				E0BB2A73245F13DF000E4B96 /* Connection.swift */,
+				E02606FA246D445B009A1483 /* Images */,
 				E0DB18F0245CA91E00FA0F82 /* Info.plist */,
 				E0F3E70E245EFA9800A3FA24 /* libsqlite3.tbd */,
 				E0F3E710245EFADB00A3FA24 /* TravelApp-Bridging-Header.h */,
@@ -188,6 +194,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E02606FB246D445C009A1483 /* Images in Resources */,
 				E0DB18EF245CA91E00FA0F82 /* LaunchScreen.storyboard in Resources */,
 				E0DB18EC245CA91E00FA0F82 /* Assets.xcassets in Resources */,
 				E0DB18EA245CA91E00FA0F82 /* Main.storyboard in Resources */,
@@ -208,6 +215,7 @@
 				E0DB18E5245CA91E00FA0F82 /* SceneDelegate.swift in Sources */,
 				E0CC7B3D245E162E008783C0 /* SignInViewController.swift in Sources */,
 				E048CBBB2461335500D743F4 /* PlatformaViewController.swift in Sources */,
+				E02606F9246D4185009A1483 /* DetailDestViewController.swift in Sources */,
 				E0CC7B41245E1F22008783C0 /* regViewController.swift in Sources */,
 				E0247859246BDA2500C14737 /* searchDestViewController.swift in Sources */,
 				E05B068D245F38E000B73562 /* Destination.swift in Sources */,

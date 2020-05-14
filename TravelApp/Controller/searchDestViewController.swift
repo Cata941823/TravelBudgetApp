@@ -28,6 +28,7 @@ class searchDestViewController: UIViewController{
         self.view.endEditing(true)
     }
     
+    
     @IBAction func backToLogin(_ sender: Any) {
         con.openDatabase()
         var user: User!
@@ -66,6 +67,25 @@ extension searchDestViewController: UITableViewDataSource, UITableViewDelegate{
             cell?.textLabel?.text = cityNameArr[indexPath.row]
         }
         return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var destination_: Destination!
+        for d in destinations{
+            if d.city == cityNameArr[indexPath.row]{
+                destination_ = d
+            }
+        }
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : DetailDestViewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailDestViewController") as! DetailDestViewController
+        vc.city = destination_.city
+        vc.country = destination_.country
+        vc.avgaccomodation = destination_.avgaccomodation
+        vc.avgplaneticket = destination_.avgplanetickets
+        vc.avgfood = destination_.avgfood
+        vc.avgsites = destination_.avgattractions
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
 }
