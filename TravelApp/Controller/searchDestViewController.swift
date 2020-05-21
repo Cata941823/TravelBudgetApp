@@ -78,6 +78,7 @@ extension searchDestViewController: UITableViewDataSource, UITableViewDelegate{
         }
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : DetailDestViewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailDestViewController") as! DetailDestViewController
+        vc.id = destination_.id
         vc.city = destination_.city
         vc.country = destination_.country
         vc.avgaccomodation = destination_.avgaccomodation

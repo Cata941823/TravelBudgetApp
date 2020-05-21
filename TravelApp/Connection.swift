@@ -383,5 +383,67 @@ class Connection: UIViewController {
         }
         sqlite3_finalize(insertStatement)
     }
+    
+    func getAllSites(id: Int) -> [Site]{
+        var sites = [Site]()
+        let queryStatementString = "SELECT * FROM Site WHERE iddestination = \(id);"
+        var queryStatement: OpaquePointer?
+            
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            print("Atr - AM GASIT Atractii turistice")
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                print("Atr - AICI")
+                
+                var sit: Site
+                let id = sqlite3_column_int(queryStatement, 0)
+                let iddest = sqlite3_column_int(queryStatement, 1)
+                guard let queryResultCol1 = sqlite3_column_text(queryStatement, 2) else {
+                    let errorMessage = String(cString: sqlite3_errmsg(db))
+                    print("Atr - \(errorMessage)")
+                    return sites
+                }
+                
+                let price = sqlite3_column_int(queryStatement, 3)
+                    
+                let name = String(cString: queryResultCol1)
+                    
+                sit = Site.init(id: Int(id), id_destination: Int(iddest), name: name, price: Int(price))
+                
+                print("Atractii turistice: \(id) | \(iddest) | \(name) | \(price)")
+                sites.append(sit)
+            }
+        } else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        sqlite3_finalize(queryStatement)
+        return sites
+    }
+    
+    func insertSite(iddest: Int, name: String, price: Int){
+        
+        let insertStatementString = "INSERT INTO Site (iddestination, name, price) VALUES (?,?,?);"
+        var insertStatement: OpaquePointer?
+          
+        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            let iddestination_: NSInteger = iddest as NSInteger
+            let name_: NSString = name as NSString
+            let price_: NSInteger = price as NSInteger
+            
+            sqlite3_bind_int(insertStatement, 1, Int32(iddestination_))
+            sqlite3_bind_text(insertStatement, 2, name_.utf8String, -1, nil)
+            sqlite3_bind_int(insertStatement, 3, Int32(price_))
+                
+            if sqlite3_step(insertStatement) == SQLITE_DONE {
+                print("\n Atractie introdusa.")
+            } else {
+                print("\nNu s-a putut insera nicio atractie.")
+            }
+        } else {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("Error inserting ATRACTIE: \(errmsg)")
+        }
+        sqlite3_finalize(insertStatement)
+    }
 }
 

@@ -858,10 +858,10 @@
                                     <constraint firstAttribute="width" secondItem="jhc-Pb-1XB" secondAttribute="height" multiplier="2:3" id="gFz-n1-Cds"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="f9F-N4-0VN" detailTextLabel="A6T-gL-WHM" style="IBUITableViewCellStyleValue1" id="tvt-hs-dpi">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="f9F-N4-0VN" detailTextLabel="A6T-gL-WHM" style="IBUITableViewCellStyleValue1" id="tvt-hs-dpi">
                                         <rect key="frame" x="0.0" y="28" width="346" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tvt-hs-dpi" id="1Ed-gL-dW3">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tvt-hs-dpi" id="1Ed-gL-dW3">
                                             <rect key="frame" x="0.0" y="0.0" width="346" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -883,6 +883,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="xcT-zD-fjh" id="Kye-ep-66y"/>
+                                    <outlet property="delegate" destination="xcT-zD-fjh" id="txm-V9-DTM"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

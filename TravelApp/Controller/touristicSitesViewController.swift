@@ -10,67 +10,72 @@ import UIKit
 
 class touristicSitesViewController: UIViewController {
 
-    var destinations = [Destination]()
-    var cityNameArr = [String]()
-    
-    var searchCity = [String]()
-    var searching = false
+    var sites = [Site]()
+    var siteNameArr = [String]()
+    var sitePriceArr = [Int]()
+    var sum: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        for s in sites{
+            print("Test: \(String(describing: s.name))\n")
+            siteNameArr.append(s.name!)
+            sitePriceArr.append(s.price)
+            print("\(siteNameArr[0])")
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension touristicSitesViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searching {
-            return searchCity.count
-        } else{
-            return cityNameArr.count
-        }
+        return siteNameArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        if searching{
-            cell?.textLabel?.text = searchCity[indexPath.row]
-        } else{
-            cell?.textLabel?.text = cityNameArr[indexPath.row]
-        }
+        cell?.textLabel?.text = siteNameArr[indexPath.row]
+        cell?.detailTextLabel?.text = String(sitePriceArr[indexPath.row])
         return cell!
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var destination_: Destination!
-        for d in destinations{
-            if d.city == cityNameArr[indexPath.row]{
-                destination_ = d
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        let myCell = tableView.cellForRow(at: indexPath)
+        print("AM DAT CLICK PE \(indexPath.row)")
+        for s in sites{
+            if (myCell?.textLabel?.text?.contains(s.name))!{
+                if (myCell?.textLabel?.text?.contains("+ added"))!{
+                    myCell?.textLabel?.text = myCell?.textLabel?.text?.replacingOccurrences(of: "+ added", with: "")
+                    self.sum -= s.price
+                    print("NOW: \(sum)")
+                }
+                else{
+                    myCell?.textLabel?.text = (myCell?.textLabel?.text)! + "+ added"
+                    self.sum += s.price
+                    print("NOW: \(sum)")
+                }
             }
         }
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc : DetailDestViewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailDestViewController") as! DetailDestViewController
-        vc.city = destination_.city
-        vc.country = destination_.country
-        vc.avgaccomodation = destination_.avgaccomodation
-        vc.avgplaneticket = destination_.avgplanetickets
-        vc.avgfood = destination_.avgfood
-        vc.avgsites = destination_.avgattractions
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
     }
-    
+
+    /*
+    private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        print("NOW: DAT CLICK PE LINIA \(indexPath.row)")
+        for s in sites{
+            if siteNameArr[indexPath.row].contains(s.name){
+                if siteNameArr[indexPath.row].contains("+ added"){
+                    cell?.textLabel?.text = siteNameArr[indexPath.row].replacingOccurrences(of: "+ added", with: "")
+                    self.sum -= s.price
+                    print("NOW: \(sum)")
+                }
+                else{
+                    cell?.textLabel?.text = siteNameArr[indexPath.row] + "+ added"
+                    self.sum += s.price
+                    print("NOW: \(sum)")
+                }
+            }
+        }
+        return cell!
+    }*/
 }

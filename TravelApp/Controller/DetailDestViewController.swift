@@ -17,6 +17,7 @@ class DetailDestViewController: UIViewController {
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var sitesLabel: UILabel!
     
+    var id: Int!
     var city: String!
     var country: String!
     var avgaccomodation: Int!
@@ -38,13 +39,13 @@ class DetailDestViewController: UIViewController {
     }
     
     @IBAction func checkSites(_ sender: Any) {
-         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-         let vc : touristicSitesViewController = mainStoryboard.instantiateViewController(withIdentifier: "touristicSitesViewController") as! touristicSitesViewController
-        
-         vc.modalPresentationStyle = .fullScreen
-         self.present(vc, animated: true, completion: nil)
-         
-
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : touristicSitesViewController = mainStoryboard.instantiateViewController(withIdentifier: "touristicSitesViewController") as! touristicSitesViewController
+        con.openDatabase()
+        vc.sites = con.getAllSites(id: self.id)
+        con.closeDB()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func backToTable(_ sender: Any) {
