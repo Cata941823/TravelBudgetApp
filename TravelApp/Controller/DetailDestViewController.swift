@@ -37,13 +37,18 @@ class DetailDestViewController: UIViewController {
         self.sitesLabel.text! = "Avg touristic sites price: " +  String(self.avgsites)
     }
     
-    @IBAction func backToTable(_ sender: Any) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc : searchDestViewController = mainStoryboard.instantiateViewController(withIdentifier: "searchDestViewController") as! searchDestViewController
-       
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true, completion: nil)
+    @IBAction func checkSites(_ sender: Any) {
+         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+         let vc : touristicSitesViewController = mainStoryboard.instantiateViewController(withIdentifier: "touristicSitesViewController") as! touristicSitesViewController
         
+         vc.modalPresentationStyle = .fullScreen
+         self.present(vc, animated: true, completion: nil)
+         
+
+    }
+    
+    @IBAction func backToTable(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     /*

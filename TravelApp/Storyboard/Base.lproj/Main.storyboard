@@ -16,10 +16,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="0Y3-Ws-m38">
-                                <rect key="frame" x="-8" y="0.0" width="420" height="896"/>
+                                <rect key="frame" x="-8" y="0.0" width="422" height="896"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Budget" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxz-Qw-dIQ">
-                                <rect key="frame" x="103.66666666666669" y="84" width="205" height="42"/>
+                                <rect key="frame" x="104.66666666666669" y="84" width="205" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CaY-i7-x4g">
-                                <rect key="frame" x="56" y="205" width="300" height="34"/>
+                                <rect key="frame" x="56" y="205" width="302" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="RuI-fU-g1Y"/>
                                 </constraints>
@@ -45,7 +45,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wSk-re-8A3">
-                                <rect key="frame" x="56" y="315" width="300" height="34"/>
+                                <rect key="frame" x="56" y="315" width="302" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="vTE-Io-Lsj"/>
                                 </constraints>
@@ -53,7 +53,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Og-eZ-YpK">
-                                <rect key="frame" x="171" y="391" width="70" height="30"/>
+                                <rect key="frame" x="172" y="391" width="70" height="30"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="rml-Vl-1JA"/>
@@ -65,13 +65,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAG-35-Or4">
-                                <rect key="frame" x="101" y="462" width="210" height="21"/>
+                                <rect key="frame" x="102" y="462" width="210" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZU-vk-4pz">
-                                <rect key="frame" x="180" y="491" width="52" height="30"/>
+                                <rect key="frame" x="181" y="491" width="52" height="30"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="Sign up"/>
                                 <connections>
@@ -756,6 +756,9 @@
                                 <state key="normal" title="Check touristic sites">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="checkSites:" destination="aCY-MS-EG6" eventType="touchUpInside" id="GrL-ls-5oh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZb-40-Qad">
                                 <rect key="frame" x="247" y="562" width="128" height="36"/>
@@ -829,6 +832,73 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OdA-fn-LSB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1881.1594202898552" y="897.32142857142856"/>
+        </scene>
+        <!--Touristic Sites View Controller-->
+        <scene sceneID="NUz-Pr-X5i">
+            <objects>
+                <viewController storyboardIdentifier="touristicSitesViewController" id="xcT-zD-fjh" customClass="touristicSitesViewController" customModule="TravelApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iti-wL-KL4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="yzO-ST-8Qm">
+                                <rect key="frame" x="-61" y="-90" width="548" height="1067"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Touristic Sites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONg-69-ERR">
+                                <rect key="frame" x="126.66666666666669" y="72" width="161" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jhc-Pb-1XB">
+                                <rect key="frame" x="35" y="131" width="346" height="519"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jhc-Pb-1XB" secondAttribute="height" multiplier="2:3" id="gFz-n1-Cds"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="f9F-N4-0VN" detailTextLabel="A6T-gL-WHM" style="IBUITableViewCellStyleValue1" id="tvt-hs-dpi">
+                                        <rect key="frame" x="0.0" y="28" width="346" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="cell" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tvt-hs-dpi" id="1Ed-gL-dW3">
+                                            <rect key="frame" x="0.0" y="0.0" width="346" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f9F-N4-0VN">
+                                                    <rect key="frame" x="20.000000000000004" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A6T-gL-WHM">
+                                                    <rect key="frame" x="282" y="11.999999999999998" width="44" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ONg-69-ERR" firstAttribute="top" secondItem="RhF-cv-dJ5" secondAttribute="top" constant="28" id="9vI-b8-RlL"/>
+                            <constraint firstItem="jhc-Pb-1XB" firstAttribute="top" secondItem="ONg-69-ERR" secondAttribute="bottom" constant="26" id="DUD-HD-god"/>
+                            <constraint firstItem="RhF-cv-dJ5" firstAttribute="trailing" secondItem="jhc-Pb-1XB" secondAttribute="trailing" constant="33" id="KP8-tC-iEJ"/>
+                            <constraint firstItem="ONg-69-ERR" firstAttribute="centerX" secondItem="Iti-wL-KL4" secondAttribute="centerX" id="Lhd-0j-76K"/>
+                            <constraint firstItem="jhc-Pb-1XB" firstAttribute="leading" secondItem="RhF-cv-dJ5" secondAttribute="leading" constant="35" id="yVW-v5-nYS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="RhF-cv-dJ5"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BOF-e1-6qQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2662.3188405797105" y="896.65178571428567"/>
         </scene>
     </scenes>
     <resources>
