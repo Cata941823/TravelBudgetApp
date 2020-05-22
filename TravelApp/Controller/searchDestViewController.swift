@@ -7,6 +7,8 @@ class searchDestViewController: UIViewController{
     var searchCity = [String]()
     var searching = false
     
+    var user: User!
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tblView: UITableView!
     var email: String!
@@ -78,6 +80,7 @@ extension searchDestViewController: UITableViewDataSource, UITableViewDelegate{
         }
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : DetailDestViewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailDestViewController") as! DetailDestViewController
+        vc.user = self.user
         vc.id = destination_.id
         vc.city = destination_.city
         vc.country = destination_.country

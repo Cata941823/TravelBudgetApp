@@ -14,6 +14,9 @@ class touristicSitesViewController: UIViewController {
     var siteNameArr = [String]()
     var sitePriceArr = [Int]()
     var sum: Int = 0
+    var sitesToSend = [Site]()
+    var dest: Destination!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,10 @@ class touristicSitesViewController: UIViewController {
     @IBAction func makePlan(_ sender: Any) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : planViewController = mainStoryboard.instantiateViewController(withIdentifier: "planViewController") as! planViewController
+        vc.user = self.user
+        vc.dest = self.dest
+        vc.sites = self.sitesToSend
+        vc.sum = self.sum
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
@@ -56,11 +63,19 @@ extension touristicSitesViewController: UITableViewDataSource, UITableViewDelega
                 if (myCell?.textLabel?.text?.contains("+ added"))!{
                     myCell?.textLabel?.text = myCell?.textLabel?.text?.replacingOccurrences(of: "+ added", with: "")
                     self.sum -= s.price
+                    var temp = 0
+                    for i in self.sitesToSend{
+                        if i.name.contains(s.name){
+                            self.sitesToSend.remove(at: temp)
+                        }
+                        temp += 1
+                    }
                     print("NOW: \(sum)")
                 }
                 else{
                     myCell?.textLabel?.text = (myCell?.textLabel?.text)! + "+ added"
                     self.sum += s.price
+                    self.sitesToSend.append(s)
                     print("NOW: \(sum)")
                 }
             }

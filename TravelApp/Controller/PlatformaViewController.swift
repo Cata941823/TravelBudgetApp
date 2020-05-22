@@ -14,6 +14,8 @@ class PlatformaViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     
     var id: Int!
+    var firstname: String = ""
+    var lastname: String = ""
     var fullName:String = ""
     var sum:Int = 0
     var email: String = ""
@@ -44,6 +46,9 @@ class PlatformaViewController: UIViewController {
     @IBAction func searchDestinations(_ sender: Any) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : searchDestViewController = mainStoryboard.instantiateViewController(withIdentifier: "searchDestViewController") as! searchDestViewController
+        var user: User!
+        user = User.init(id: self.id, firstname: self.firstname, lastname: self.lastname, email: self.email, password: "", income: self.income, spendings: self.spendings)
+        vc.user = user
         vc.email = self.email
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)

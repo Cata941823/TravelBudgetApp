@@ -25,6 +25,8 @@ class DetailDestViewController: UIViewController {
     var avgfood: Int!
     var avgsites: Int!
     
+    var user: User!
+    
     var con: Connection = Connection.init()
     
     override func viewDidLoad() {
@@ -42,6 +44,10 @@ class DetailDestViewController: UIViewController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : touristicSitesViewController = mainStoryboard.instantiateViewController(withIdentifier: "touristicSitesViewController") as! touristicSitesViewController
         con.openDatabase()
+        var dest: Destination!
+        dest = Destination.init(id: id, city: city, country: country, avgaccomodation: avgaccomodation, avgfood: avgplaneticket, avgplanetickets: avgfood, avgattractions: avgsites)
+        vc.user = user
+        vc.dest = dest
         vc.sites = con.getAllSites(id: self.id)
         con.closeDB()
         vc.modalPresentationStyle = .fullScreen
