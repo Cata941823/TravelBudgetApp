@@ -25,6 +25,15 @@ class touristicSitesViewController: UIViewController {
         }
     }
 
+    @IBAction func makePlan(_ sender: Any) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : planViewController = mainStoryboard.instantiateViewController(withIdentifier: "planViewController") as! planViewController
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
+    @IBAction func backToDetail(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension touristicSitesViewController: UITableViewDataSource, UITableViewDelegate{
@@ -57,25 +66,4 @@ extension touristicSitesViewController: UITableViewDataSource, UITableViewDelega
             }
         }
     }
-
-    /*
-    private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        print("NOW: DAT CLICK PE LINIA \(indexPath.row)")
-        for s in sites{
-            if siteNameArr[indexPath.row].contains(s.name){
-                if siteNameArr[indexPath.row].contains("+ added"){
-                    cell?.textLabel?.text = siteNameArr[indexPath.row].replacingOccurrences(of: "+ added", with: "")
-                    self.sum -= s.price
-                    print("NOW: \(sum)")
-                }
-                else{
-                    cell?.textLabel?.text = siteNameArr[indexPath.row] + "+ added"
-                    self.sum += s.price
-                    print("NOW: \(sum)")
-                }
-            }
-        }
-        return cell!
-    }*/
 }

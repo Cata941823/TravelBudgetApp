@@ -16,6 +16,7 @@
 		E087D8C024770BCB00A761FF /* Site.swift in Sources */ = {isa = PBXBuildFile; fileRef = E087D8BF24770BCB00A761FF /* Site.swift */; };
 		E087D8C224770C6300A761FF /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = E087D8C124770C6300A761FF /* Plan.swift */; };
 		E087D8C424770CCC00A761FF /* SitePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = E087D8C324770CCC00A761FF /* SitePlan.swift */; };
+		E0ABA77C247811ED0015EA6D /* planViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0ABA77B247811ED0015EA6D /* planViewController.swift */; };
 		E0BB2A74245F13DF000E4B96 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BB2A73245F13DF000E4B96 /* Connection.swift */; };
 		E0BB2A76245F195C000E4B96 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BB2A75245F195C000E4B96 /* User.swift */; };
 		E0CC7B3D245E162E008783C0 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CC7B3C245E162E008783C0 /* SignInViewController.swift */; };
@@ -40,6 +41,7 @@
 		E087D8BF24770BCB00A761FF /* Site.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Site.swift; sourceTree = "<group>"; };
 		E087D8C124770C6300A761FF /* Plan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		E087D8C324770CCC00A761FF /* SitePlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SitePlan.swift; sourceTree = "<group>"; };
+		E0ABA77B247811ED0015EA6D /* planViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = planViewController.swift; sourceTree = "<group>"; };
 		E0BB2A73245F13DF000E4B96 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		E0BB2A75245F195C000E4B96 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0CC7B3C245E162E008783C0 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				E0247858246BDA2500C14737 /* searchDestViewController.swift */,
 				E02606F8246D4185009A1483 /* DetailDestViewController.swift */,
 				E0412AFD24767A7600D0A23E /* touristicSitesViewController.swift */,
+				E0ABA77B247811ED0015EA6D /* planViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 				E02606F9246D4185009A1483 /* DetailDestViewController.swift in Sources */,
 				E087D8C424770CCC00A761FF /* SitePlan.swift in Sources */,
 				E0412AFE24767A7600D0A23E /* touristicSitesViewController.swift in Sources */,
+				E0ABA77C247811ED0015EA6D /* planViewController.swift in Sources */,
 				E0CC7B41245E1F22008783C0 /* regViewController.swift in Sources */,
 				E0247859246BDA2500C14737 /* searchDestViewController.swift in Sources */,
 				E05B068D245F38E000B73562 /* Destination.swift in Sources */,
