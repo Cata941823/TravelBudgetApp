@@ -16,6 +16,11 @@ class planViewController: UIViewController {
     var dest: Destination!
     var user: User!
     
+    var price_options = [0, 0]
+    var total_price: Int = 0
+    
+    var con: Connection = Connection.init()
+    
     // Number of days
     @IBOutlet weak var daysTextField: UITextField!
     
@@ -32,7 +37,8 @@ class planViewController: UIViewController {
     // Plan name
     @IBOutlet weak var planNameTextField: UITextField!
     
-
+    @IBOutlet weak var selectPlan: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("bl - PLAN YOUR TRIP:")
@@ -46,8 +52,9 @@ class planViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
-        //self.sum =
+        
         if ((daysTextField?.text) != nil){
+            
             var days: Int!
             var rest: Int!
             var diff: Int!
@@ -57,13 +64,20 @@ class planViewController: UIViewController {
             
             // strict
             self.strictPricePerDayLabel?.text = "Total price for \(daysTextField?.text ?? "") days: \(self.sum + rest) RON"
-            self.strictMonthsLabel?.text = "Months remaining: \((self.sum + rest)/diff) months"
-            self.strictMoneyToSaveLabel?.text = "Money/month to save: \(diff ?? 0) RON"
+            self.strictMonthsLabel?.text = "Months remaining: \(round(Float((self.sum + rest))/Float(diff))) months"
+            self.strictMoneyToSaveLabel?.text = "Money/month to save: \(Float(diff) ) RON"
+            
+            
             
             // easy
-            self.easyPricePerDayLabel?.text = "Total price for \(daysTextField?.text ?? "") days: \(self.sum + rest) RON"
-            self.easyMonthsLabel?.text = "Months remaining: \((self.sum + rest)/(diff-(diff/3))) months"
-            self.easyMoneyToSaveLabel?.text = "Money/month to save: \(diff-(diff/3)) RON"
+            self.easyPricePerDayLabel?.text = "Total price for \(daysTextField?.text ?? "") days: \(Float(self.sum) + Float(rest)) RON"
+            self.easyMonthsLabel?.text = "Months remaining: \(round((Float(self.sum) + Float(rest))/(Float(diff)-(Float(diff/3))))) months"
+            self.easyMoneyToSaveLabel?.text = "Money/month to save: \(Float(diff)-(Float(diff)/3)) RON"
+            
+            self.price_options[0] = diff
+            self.price_options[1] = diff - (diff/3)
+            self.total_price = self.sum + rest
+            
         }
     }
     
@@ -72,6 +86,48 @@ class planViewController: UIViewController {
     }
     
     @IBAction func addPlan(_ sender: Any) {
+        
+        if ((daysTextField.text?.isEmpty)!){
+            displayMessage(userMessage: "In order to add a specific plan you need to type a number of days.")
+        }
+        if ((planNameTextField?.text?.isEmpty)!){
+            displayMessage(userMessage: "In order to add a specific plan, you need to type a name for the plan.")
+        }
+        else{
+            con.openDatabase()
+
+            if self.selectPlan.selectedSegmentIndex == 0 {
+                con.updateUser(email: self.user.email, plan_spending:self.price_options[0])
+            }
+            else{
+                con.updateUser(email: self.user.email, plan_spending: self.price_options[1])
+            }
+            
+            con.insertPlan(name: (self.planNameTextField?.text)!, iduser:self.user.id, totalprice: self.total_price)
+            
+            for i in self.sites{
+                con.insertSitePlan(id_plan: con.getPlan(plan_name: (self.planNameTextField?.text)!).id, id_site: i.id)
+            }
+            
+            con.closeDB()
+        }
     }
+    
+    func displayMessage(userMessage: String) -> Void{
+        DispatchQueue.main.async {
+            
+            let alertController = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .default){
+                (action: UIAlertAction!) in
+                DispatchQueue.main.async{
+                    //self.dismiss(animated: true, completion: nil)
+                }
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     
 }

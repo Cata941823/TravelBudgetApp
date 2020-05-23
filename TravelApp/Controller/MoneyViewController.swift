@@ -45,7 +45,9 @@ class MoneyViewController: UIViewController, UITextFieldDelegate {
         if((incomeTextField.text?.isEmpty)!){
             displayMessage(userMessage: "You have to introduce a sum in order to change the budget.")
         }
-        con.addIncome(email: self.email, income: incomeTextField.text!)
+        else{
+            con.addIncome(email: self.email, income: incomeTextField.text!)
+        }
         con.closeDB()
     }
     
@@ -59,7 +61,9 @@ class MoneyViewController: UIViewController, UITextFieldDelegate {
         if((spendingsTextField.text?.isEmpty)!){
             displayMessage(userMessage: "You have to introduce a sum in order to change the budget.")
         }
-        con.addSpending(email: self.email, spending: spendingsTextField.text!)
+        else{
+            con.addSpending(email: self.email, spending: spendingsTextField.text!)
+        }
         con.closeDB()
     }
     

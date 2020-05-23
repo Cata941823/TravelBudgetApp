@@ -21,13 +21,14 @@ class PlatformaViewController: UIViewController {
     var email: String = ""
     var income: Int = 0
     var spendings: Int = 0
+    var plan_spendings: Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         nameLabel?.text = fullName
-        sum = income - spendings
+        sum = income - spendings - plan_spendings
         print("\(sum) \(spendings) \(income)")
         sumLabel?.text = String(sum) + " RON"
         
@@ -47,7 +48,7 @@ class PlatformaViewController: UIViewController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : searchDestViewController = mainStoryboard.instantiateViewController(withIdentifier: "searchDestViewController") as! searchDestViewController
         var user: User!
-        user = User.init(id: self.id, firstname: self.firstname, lastname: self.lastname, email: self.email, password: "", income: self.income, spendings: self.spendings)
+        user = User.init(id: self.id, firstname: self.firstname, lastname: self.lastname, email: self.email, password: "", income: self.income, spendings: self.spendings, plan_spendings: self.plan_spendings)
         vc.user = user
         vc.email = self.email
         vc.modalPresentationStyle = .fullScreen

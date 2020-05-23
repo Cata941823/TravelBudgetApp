@@ -17,8 +17,9 @@ class User {
     var password: String!
     var income: Int
     var spendings: Int
+    var plan_spendings: Int
     
-    init(id: Int, firstname: String?, lastname: String?, email: String?, password: String?, income: Int, spendings: Int){
+    init(id: Int, firstname: String?, lastname: String?, email: String?, password: String?, income: Int, spendings: Int, plan_spendings: Int){
         self.id = id
         self.firstname = firstname
         self.lastname = lastname
@@ -26,5 +27,6 @@ class User {
         self.password = password
         self.income = income
         self.spendings = spendings
+        self.plan_spendings = plan_spendings
     }
 }

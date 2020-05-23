@@ -21,12 +21,12 @@ class SignInViewController: UIViewController{
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         con.openDatabase()
         con.createTable(query: "CREATE TABLE IF NOT EXISTS User (id INTEGER Primary KEY Autoincrement, firstname varchar(25) NOT NULL, lastname Varchar(25) NOT NULL, email Varchar(45) UNIQUE NOT NULL, password VARCHAR(25) NOT NULL, monthlyincome INTEGER, monthlyspending INTEGER);")
-        
+
         con.createTable(query: "CREATE TABLE IF NOT EXISTS Destination (id INTEGER Primary KEY Autoincrement, city varchar(25) NOT NULL, country Varchar(25) NOT NULL, avgaccomodation INTEGER NOT NULL, avgfood INTEGER NOT NULL, avgplanetickets INTEGER NOT NULL, avgattractions INTEGER NOT NULL, image BLOB);")
         
         con.createTable(query: "CREATE TABLE IF NOT EXISTS Site (id INTEGER Primary KEY Autoincrement, iddestination INTEGER NOT NULL, name Varchar(45) NOT NULL, price INTEGER NOT NULL, FOREIGN KEY(iddestination) REFERENCES Destination(id));")
 
-        con.createTable(query: "CREATE TABLE IF NOT EXISTS Plan (id INTEGER Primary KEY Autoincrement, name Varchar(45) NOT NULL, iduser INTEGER NOT NULL, totalprice INTEGER NOT NULL, FOREIGN KEY(iduser) REFERENCES User(id));")
+        con.createTable(query: "CREATE TABLE IF NOT EXISTS Plan (id INTEGER Primary KEY Autoincrement, name Varchar(45) NOT NULL UNIQUE, iduser INTEGER NOT NULL, totalprice INTEGER NOT NULL, FOREIGN KEY(iduser) REFERENCES User(id));")
 
         con.createTable(query: "CREATE TABLE IF NOT EXISTS SitePlan (id INTEGER Primary KEY Autoincrement, idplan INTEGER NOT NULL, idsite INTEGER NOT NULL, FOREIGN KEY(idplan) REFERENCES Plan(id), FOREIGN KEY(idsite) REFERENCES Site(id));")
         
@@ -72,6 +72,7 @@ class SignInViewController: UIViewController{
                 }
                 */
                 user = con.getUser(email: email)
+                vc.plan_spendings = user.plan_spendings
                 vc.id = user.id
                 vc.fullName = user.lastname! + " " + user.firstname!
                 vc.email = user.email!

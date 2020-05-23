@@ -170,6 +170,7 @@ class Connection: UIViewController {
                 
                 let inc = sqlite3_column_int(queryStatement, 5)
                 let spend = sqlite3_column_int(queryStatement, 6)
+                let plan_spend = sqlite3_column_int(queryStatement, 7)
                 
                 let name = String(cString: queryResultCol1)
                 let fname = String(cString: queryResultCol2)
@@ -178,7 +179,7 @@ class Connection: UIViewController {
 
                 print("\(id) | \(name) | \(fname) | \(email) | \(pass) | \(inc) | \(spend)")
 
-                user = User.init(id: Int(id), firstname: name, lastname: fname, email: email, password: pass, income: Int(inc), spendings: Int(spend))
+                user = User.init(id: Int(id), firstname: name, lastname: fname, email: email, password: pass, income: Int(inc), spendings: Int(spend), plan_spendings: Int(plan_spend))
             }
         } else {
             let errorMessage = String(cString: sqlite3_errmsg(db))
@@ -220,6 +221,22 @@ class Connection: UIViewController {
         // 7
         sqlite3_finalize(queryStatement)
         return (monthlyIncome!, monthlySpending!)
+    }
+    
+    func updateUser(email: String, plan_spending: Int){
+        
+        let updateStatementString = "UPDATE User SET plan_money = \(plan_spending) WHERE email = '\(email)';"
+        var updateStatement: OpaquePointer?
+        if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
+            if sqlite3_step(updateStatement) == SQLITE_DONE {
+              print("\nSuccessfully updated row.")
+            } else {
+              print("\nCould not update row.")
+            }
+        } else {
+            print("\nUPDATE statement is not prepared")
+        }
+        sqlite3_finalize(updateStatement)
     }
 
     func addIncome(email: String, income: String){
@@ -444,6 +461,91 @@ class Connection: UIViewController {
             print("Error inserting ATRACTIE: \(errmsg)")
         }
         sqlite3_finalize(insertStatement)
+    }
+    
+    func insertPlan(name: String, iduser: Int, totalprice: Int){
+        let insertStatementString = "INSERT INTO Plan (name, iduser, totalprice) VALUES (?,?,?);"
+        var insertStatement: OpaquePointer?
+          
+        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            let name_: NSString = name as NSString
+            let iduser_: NSInteger = iduser as NSInteger
+            let totalprice_: NSInteger = totalprice as NSInteger
+            
+            sqlite3_bind_text(insertStatement, 1, name_.utf8String, -1, nil)
+            sqlite3_bind_int(insertStatement, 2, Int32(iduser_))
+            sqlite3_bind_int(insertStatement, 3, Int32(totalprice_))
+                
+            if sqlite3_step(insertStatement) == SQLITE_DONE {
+                print("\n Plan introdus.")
+            } else {
+                print("\nNu s-a putut insera planul.")
+            }
+        } else {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("Error inserting ATRACTIE: \(errmsg)")
+        }
+        sqlite3_finalize(insertStatement)
+    }
+    
+    func insertSitePlan(id_plan: Int, id_site: Int){
+        let insertStatementString = "INSERT INTO SitePlan (idplan, idsite) VALUES (?, ?);"
+        var insertStatement: OpaquePointer?
+        // 1
+        if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
+            
+            let id_plan_: NSInteger = id_plan as NSInteger
+            let id_site_: NSInteger = id_site as NSInteger
+            
+            // 2
+            sqlite3_bind_int(insertStatement, 1, Int32(id_plan_))
+            // 3
+            sqlite3_bind_int(insertStatement, 2, Int32(id_site_))
+            // 4
+            if sqlite3_step(insertStatement) == SQLITE_DONE {
+                print("\nSites-Successfully inserted row.")
+            } else {
+                print("\nSites-Could not insert row.")
+            }
+        } else {
+            print("\nINSERT statement is not prepared.")
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        // 5
+        sqlite3_finalize(insertStatement)
+    }
+    
+    func getPlan(plan_name: String) -> Plan{
+        let queryStatementString = "SELECT * FROM Plan WHERE name LIKE '%\(plan_name)%';"
+        var queryStatement: OpaquePointer?
+        var plan: Plan!
+        
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+        
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                
+                let id = sqlite3_column_int(queryStatement, 0)
+                
+                guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
+                    print("Query result is nil")
+                    return plan
+                }
+                
+                let iduser = sqlite3_column_int(queryStatement, 2)
+                
+                let totalprice = sqlite3_column_int(queryStatement, 3)
+
+                let name = String(cString: queryResultCol1)
+
+                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice))
+            }
+        } else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        sqlite3_finalize(queryStatement)
+        return plan
     }
 }
 
