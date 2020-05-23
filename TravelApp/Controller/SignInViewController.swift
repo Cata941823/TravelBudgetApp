@@ -73,6 +73,7 @@ class SignInViewController: UIViewController{
                 */
                 user = con.getUser(email: email)
                 vc.plan_spendings = user.plan_spendings
+                print("User: plan_spendings:--------------- \(user.plan_spendings)")
                 vc.id = user.id
                 vc.fullName = user.lastname! + " " + user.firstname!
                 vc.email = user.email!

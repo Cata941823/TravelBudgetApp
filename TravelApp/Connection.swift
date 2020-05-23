@@ -276,7 +276,7 @@ class Connection: UIViewController {
         lastSpending = Int(user.spendings)
         actualSpending = Int(spending)!
         newSpending = lastSpending + actualSpending
-        let updateStatementString = "UPDATE User SET monthlyspending = \(newSpending) WHERE email = '\(email)';"
+        let updateStatementString = "UPDATE User SET monthlyspending += \(newSpending) WHERE email = '\(email)';"
         var updateStatement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {

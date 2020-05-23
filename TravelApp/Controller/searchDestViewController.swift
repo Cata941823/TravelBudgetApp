@@ -41,6 +41,7 @@ class searchDestViewController: UIViewController{
 
         user = con.getUser(email: self.email)
         con.closeDB()
+        vc.plan_spendings = user.plan_spendings
         vc.id = user.id
         vc.fullName = user.lastname! + " " + user.firstname!
         vc.email = user.email!
