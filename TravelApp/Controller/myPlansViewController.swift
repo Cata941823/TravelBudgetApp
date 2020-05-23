@@ -65,25 +65,24 @@ extension myPlansViewController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*var plan_: Plan!
+        var plan_: Plan!
         for d in plans{
             if d.name == planNameArr[indexPath.row]{
                 plan_ = d
             }
         }
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc : DetailDestViewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailDestViewController") as! DetailDestViewController
-        vc.user = self.user
-        //vc.id = plan_.id
-        //vc.city = plan_.city
-        //vc.country = plan_.country
-        //vc.avgaccomodation = plan_.avgaccomodation
-        //vc.avgplaneticket = destination_.avgplanetickets
-        vc.avgfood = destination_.avgfood
-        vc.avgsites = destination_.avgattractions
+        let vc : myDetailPlanViewController = mainStoryboard.instantiateViewController(withIdentifier: "myDetailPlanViewController") as! myDetailPlanViewController
+        //vc.destination = con.getDestination(plan_name: plan_.name)
+        vc.price = plan_.total_price
+        vc.id = plan_.id
+        vc.id_user = plan_.id_user
+        vc.name = plan_.name
+        vc.total_days = plan_.total_days
+        vc.sites = con.getAllSitesFromPlan(id: plan_.id)
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
-    */}
+    }
 }
 
 extension myPlansViewController: UISearchBarDelegate{

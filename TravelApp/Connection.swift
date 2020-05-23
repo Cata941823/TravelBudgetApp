@@ -306,6 +306,56 @@ class Connection: UIViewController {
         return ret
     }
     
+    func getAllSitesFromPlan(id: Int) -> [String]{
+        
+        let queryStatementString = "SELECT s.name FROM Site s INNER JOIN SitePlan sp ON sp.idsite = s.id INNER JOIN Plan p ON sp.idplan = p.id WHERE p.id = \(id);"
+        var queryStatement: OpaquePointer?
+        var Sites = [String]()
+        var site_: String!
+        
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+        
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                guard let queryResultCol1 = sqlite3_column_text(queryStatement, 0) else {
+                    print("Query result is nil")
+                    return Sites
+                }
+                site_ = String(cString: queryResultCol1)
+                Sites.append(site_)
+            }
+        } else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        sqlite3_finalize(queryStatement)
+        return Sites
+
+    }
+    
+    func getDestination(plan_name: String) -> String {
+        let queryStatementString = "SELECT d.city FROM Destination d INNER JOIN Site s ON s.iddestination = d.id INNER JOIN SitePlan sp ON s.id = sp.idsite INNER JOIN Plan p ON sp.idplan = p.id WHERE p.name = '\(plan_name)';"
+        var queryStatement: OpaquePointer?
+        var plan_name_: String!
+        
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+        
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                guard let queryResultCol1 = sqlite3_column_text(queryStatement, 0) else {
+                    print("Query result is nil")
+                    let errorMessage = String(cString: sqlite3_errmsg(db))
+                    print("\nQuery is not prepared \(errorMessage)")
+                    return plan_name_
+                }
+                plan_name_ = String(cString: queryResultCol1)
+                print("PLAN: \(plan_name_)")
+            }
+        } else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        sqlite3_finalize(queryStatement)
+        return plan_name_
+    }
     func searchDestination(destination: String) -> [Destination] {
         
         var destinationList: [Destination]=[]
