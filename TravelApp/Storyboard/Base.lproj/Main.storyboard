@@ -780,6 +780,27 @@
             </objects>
             <point key="canvasLocation" x="47.826086956521742" y="1926.5625"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="YUJ-6n-bdK">
+            <objects>
+                <viewController id="boH-rw-GJ6" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VJ5-2p-kQj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="UlC-6K-ybr">
+                                <rect key="frame" x="-65" y="-174" width="558" height="1256"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="hoX-Mz-63K"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IBP-99-tCC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="811.59420289855075" y="1926.5625"/>
+        </scene>
         <!--Detail Dest View Controller-->
         <scene sceneID="cSe-MB-ErP">
             <objects>
@@ -791,7 +812,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="foU-7x-Dli">
                                 <rect key="frame" x="-61" y="-156" width="562" height="1208"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lisbon.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2w6-Ij-4ta">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pari" translatesAutoresizingMaskIntoConstraints="NO" id="2w6-Ij-4ta">
                                 <rect key="frame" x="-11" y="100" width="437" height="103"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2w6-Ij-4ta" secondAttribute="height" multiplier="437:103" id="qbr-3e-7Aa"/>
@@ -1314,7 +1335,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Lisbon.jpg" width="374" height="82"/>
+        <image name="Pari" width="374" height="82"/>
         <image name="Rome" width="275" height="183"/>
         <image name="airplane" catalog="system" width="128" height="115"/>
         <image name="background" width="253" height="521"/>

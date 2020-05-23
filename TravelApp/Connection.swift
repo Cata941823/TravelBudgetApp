@@ -41,11 +41,11 @@ class Connection: UIViewController {
         }
     }
     
-    func insertUser (firstName: String, lastName: String, email: String, password: String){
+    func insertUser (firstName: String, lastName: String, email: String, password: String) -> Int{
         
         let insertStatementString = "INSERT INTO User (firstname, lastname, email, password) VALUES (?, ?,?,?);"
         var insertStatement: OpaquePointer?
-        
+        var ret: Int = 0
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             
             let firstn: NSString = firstName as NSString
@@ -60,6 +60,7 @@ class Connection: UIViewController {
         
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("\nSuccessfully inserted row.")
+                ret = 1
             } else {
                 print("\nCould not insert row.")
             }
@@ -68,6 +69,7 @@ class Connection: UIViewController {
             print("\nINSERT statement is not prepared.")
         }
         sqlite3_finalize(insertStatement)
+        return ret
     }
     
     func logIn(email: String, password: String) -> Bool {
@@ -241,7 +243,7 @@ class Connection: UIViewController {
         sqlite3_finalize(updateStatement)
     }
 
-    func addIncome(email: String, income: String){
+    func addIncome(email: String, income: String) -> Int{
         var user: User!
         var lastIncome: Int = 0
         var newIncome: Int = 0
@@ -252,24 +254,26 @@ class Connection: UIViewController {
         newIncome = lastIncome + actualIncome
         let updateStatementString = "UPDATE User SET monthlyincome = \(newIncome) WHERE email = '\(email)';"
         var updateStatement: OpaquePointer?
+        var ret: Int = 0
         
         if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
             
             if sqlite3_step(updateStatement) == SQLITE_DONE {
                 print("\nSuccessfully updated row.")
+                ret = 1
             } else {
                 print("\nCould not update row.")
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("Error preparing to alter: \(errmsg)")
-                return
             }
         } else {
             print("\nUPDATE statement is not prepared")
         }
         sqlite3_finalize(updateStatement)
+        return 1
     }
 
-    func addSpending(email: String, spending: String){
+    func addSpending(email: String, spending: String) -> Int{
         var user: User!
         var lastSpending: Int = 0
         var newSpending: Int = 0
@@ -280,16 +284,17 @@ class Connection: UIViewController {
         newSpending = lastSpending + actualSpending
         let updateStatementString = "UPDATE User SET monthlyspending = \(newSpending) WHERE email = '\(email)';"
         var updateStatement: OpaquePointer?
+        var ret: Int = 0
         
         if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
         
             if sqlite3_step(updateStatement) == SQLITE_DONE {
                 print("\nSuccessfully updated row.")
+                ret = 1
             } else {
                 print("\nCould not update row.")
                 let errmsg = String(cString: sqlite3_errmsg(db)!)
                 print("Error preparing to alter: \(errmsg)")
-                return
             }
         } else {
             print("\nCould not update row.")
@@ -298,6 +303,7 @@ class Connection: UIViewController {
             print("\nUPDATE statement is not prepared")
         }
         sqlite3_finalize(updateStatement)
+        return ret
     }
     
     func searchDestination(destination: String) -> [Destination] {

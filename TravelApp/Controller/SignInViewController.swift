@@ -50,7 +50,7 @@ class SignInViewController: UIViewController{
         self.passwordTextField.resignFirstResponder()
 
         if (emailAddressTextField.text?.isEmpty)! ||  (passwordTextField.text?.isEmpty)!{
-            displayMessage(userMessage: "All fields are required to fill in.")
+            displayMessage(title: "Alert", userMessage: "All fields are required to fill in.")
             return
         }
         else{
@@ -80,22 +80,23 @@ class SignInViewController: UIViewController{
                 vc.email = user.email!
                 vc.income = user.income
                 vc.spendings = user.spendings
-                
+                displayMessage(title: "", userMessage: "Credentials accepted.")
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true, completion: nil)
             }
             else{
                 print("NOT WORKING\n")
+                displayMessage(title: "Alert", userMessage: "Credentials not working.")
             }
         }
 
         con.closeDB()
     }
     
-    func displayMessage(userMessage: String) -> Void{
+    func displayMessage(title: String, userMessage: String) -> Void{
         DispatchQueue.main.async {
             
-            let alertController = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert)
+            let alertController = UIAlertController(title: title, message: userMessage, preferredStyle: .alert)
             
             let OKAction = UIAlertAction(title: "OK", style: .default){
                 (action: UIAlertAction!) in

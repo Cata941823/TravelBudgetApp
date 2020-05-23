@@ -42,11 +42,19 @@ class regViewController: UIViewController{
         self.passwordTextField.resignFirstResponder()
 
         if(firstNameTextField.text!.isEmpty) || (lastNameTextField.text!.isEmpty) || (emailTextField.text!.isEmpty) || (passwordTextField.text!.isEmpty){
-            displayMessage(userMessage: "All fields must be filled in.")
+            displayMessage(title: "Alert", userMessage: "All fields must be filled in.")
             return
         }
         else{
-            con.insertUser(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)
+            if((emailTextField.text?.contains("@"))! && ((emailTextField.text?.contains("."))!) && passwordTextField.text!.count >= 5){
+                if(con.insertUser(firstName: firstNameTextField.text!, lastName: lastNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!)==1){
+                    displayMessage(title: "", userMessage: "User added!")
+                }
+            }
+            else{
+                displayMessage(title: "Alert", userMessage: "E-mail invalid and password must contain at least 5 characters/digits/symbols")
+            }
+            
         }
         con.closeDB()
     }
@@ -58,15 +66,17 @@ class regViewController: UIViewController{
         self.present(SignInViewController, animated: true)
     }
     
-    func displayMessage(userMessage: String) -> Void{
+    func displayMessage(title: String, userMessage: String) -> Void{
          DispatchQueue.main.async {
              
-             let alertController = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert)
+             let alertController = UIAlertController(title: title, message: userMessage, preferredStyle: .alert)
              
              let OKAction = UIAlertAction(title: "OK", style: .default){
                  (action: UIAlertAction!) in
                  DispatchQueue.main.async{
-                     //self.dismiss(animated: true, completion: nil)
+                    if(title==""){
+                        self.dismiss(animated: true, completion: nil)
+                    }
                  }
              }
              alertController.addAction(OKAction)

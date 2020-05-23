@@ -80,7 +80,7 @@ class planViewController: UIViewController {
                 self.total_price = self.sum + rest
             }
             else{
-                displayMessage(userMessage: "No money in wallet.")
+                displayMessage(title: "Alert", userMessage: "No money in wallet.")
             }
         }
     }
@@ -92,10 +92,10 @@ class planViewController: UIViewController {
     @IBAction func addPlan(_ sender: Any) {
         
         if ((daysTextField.text?.isEmpty)!){
-            displayMessage(userMessage: "In order to add a specific plan you need to type a number of days.")
+            displayMessage(title: "Alert", userMessage: "In order to add a specific plan you need to type a number of days.")
         }
         if ((planNameTextField?.text?.isEmpty)!){
-            displayMessage(userMessage: "In order to add a specific plan, you need to type a name for the plan.")
+            displayMessage(title: "Alert", userMessage: "In order to add a specific plan, you need to type a name for the plan.")
         }
         else{
             con.openDatabase()
@@ -111,15 +111,16 @@ class planViewController: UIViewController {
                 for i in self.sites{
                     con.insertSitePlan(id_plan: con.getPlan(plan_name: (self.planNameTextField?.text)!).id, id_site: i.id)
                 }
+                displayMessage(title: "Succesfully", userMessage: "Plan added!")
             }
             con.closeDB()
         }
     }
     
-    func displayMessage(userMessage: String) -> Void{
+    func displayMessage(title: String, userMessage: String) -> Void{
         DispatchQueue.main.async {
             
-            let alertController = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert)
+            let alertController = UIAlertController(title: title, message: userMessage, preferredStyle: .alert)
             
             let OKAction = UIAlertAction(title: "OK", style: .default){
                 (action: UIAlertAction!) in

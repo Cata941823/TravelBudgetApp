@@ -43,10 +43,12 @@ class MoneyViewController: UIViewController, UITextFieldDelegate {
         self.spendingsTextField.resignFirstResponder()
 
         if((incomeTextField.text?.isEmpty)!){
-            displayMessage(userMessage: "You have to introduce a sum in order to change the budget.")
+            displayMessage(title: "Alert", userMessage: "You have to introduce a sum in order to change the budget.")
         }
         else{
-            con.addIncome(email: self.email, income: incomeTextField.text!)
+            if(con.addIncome(email: self.email, income: incomeTextField.text!)==1){
+                displayMessage(title: "", userMessage: "Income added!")
+            }
         }
         con.closeDB()
     }
@@ -59,10 +61,12 @@ class MoneyViewController: UIViewController, UITextFieldDelegate {
         self.spendingsTextField.resignFirstResponder()
 
         if((spendingsTextField.text?.isEmpty)!){
-            displayMessage(userMessage: "You have to introduce a sum in order to change the budget.")
+            displayMessage(title: "Alert", userMessage: "You have to introduce a sum in order to change the budget.")
         }
         else{
-            con.addSpending(email: self.email, spending: spendingsTextField.text!)
+            if(con.addSpending(email: self.email, spending: spendingsTextField.text!)==1){
+                displayMessage(title: "", userMessage: "Spendings added.")
+            }
         }
         con.closeDB()
     }
@@ -89,10 +93,10 @@ class MoneyViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func displayMessage(userMessage: String) -> Void{
+    func displayMessage(title: String, userMessage: String) -> Void{
         DispatchQueue.main.async {
             
-            let alertController = UIAlertController(title: "Alert", message: userMessage, preferredStyle: .alert)
+            let alertController = UIAlertController(title: title, message: userMessage, preferredStyle: .alert)
             
             let OKAction = UIAlertAction(title: "OK", style: .default){
                 (action: UIAlertAction!) in
@@ -104,15 +108,4 @@ class MoneyViewController: UIViewController, UITextFieldDelegate {
             self.present(alertController, animated: true, completion: nil)
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
