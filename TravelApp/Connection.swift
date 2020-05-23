@@ -276,7 +276,7 @@ class Connection: UIViewController {
         lastSpending = Int(user.spendings)
         actualSpending = Int(spending)!
         newSpending = lastSpending + actualSpending
-        let updateStatementString = "UPDATE User SET monthlyspending += \(newSpending) WHERE email = '\(email)';"
+        let updateStatementString = "UPDATE User SET monthlyspending = \(newSpending) WHERE email = '\(email)';"
         var updateStatement: OpaquePointer?
         
         if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
@@ -290,6 +290,9 @@ class Connection: UIViewController {
                 return
             }
         } else {
+            print("\nCould not update row.")
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("Error preparing to alter: \(errmsg)")
             print("\nUPDATE statement is not prepared")
         }
         sqlite3_finalize(updateStatement)
@@ -546,6 +549,39 @@ class Connection: UIViewController {
         }
         sqlite3_finalize(queryStatement)
         return plan
+    }
+    
+    func getAllPlans(iduser: Int) -> [Plan]{
+        var plans = [Plan]()
+        let queryStatementString = "SELECT * FROM Plan where iduser = \(iduser);"
+        var queryStatement: OpaquePointer?
+            
+        if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
+            while sqlite3_step(queryStatement) == SQLITE_ROW {
+                var plan: Plan
+                
+                let id = sqlite3_column_int(queryStatement, 0)
+                    
+                guard let queryResultCol1 = sqlite3_column_text(queryStatement, 1) else {
+                    print("Query result is nil")
+                    return plans
+                }
+                    
+                let iduser = sqlite3_column_int(queryStatement, 2)
+                
+                let totalprice = sqlite3_column_int(queryStatement, 3)
+
+                let name = String(cString: queryResultCol1)
+
+                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice))
+                plans.append(plan)
+            }
+        } else {
+            let errorMessage = String(cString: sqlite3_errmsg(db))
+            print("\nQuery is not prepared \(errorMessage)")
+        }
+        sqlite3_finalize(queryStatement)
+        return plans
     }
 }
 

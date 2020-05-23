@@ -34,10 +34,10 @@ class DetailDestViewController: UIViewController {
         
         self.cityLabel.text! = self.city
         self.countryLabel.text! = "Country: " + self.country
-        self.accLabel.text! = "Avg accomodation price: " + String( self.avgaccomodation)
-        self.planeLabel.text! = "Avg plane tickets: " + String(self.avgplaneticket)
-        self.foodLabel.text! = "Avg food price/day: " + String(self.avgfood)
-        self.sitesLabel.text! = "Avg touristic sites price: " +  String(self.avgsites)
+        self.accLabel.text! = "Avg accomodation price: " + String( self.avgaccomodation) + " RON"
+        self.planeLabel.text! = "Avg plane tickets: " + String(self.avgplaneticket) + " RON"
+        self.foodLabel.text! = "Avg food price/day: " + String(self.avgfood) + " RON"
+        self.sitesLabel.text! = "Avg touristic sites price: " +  String(self.avgsites) + " RON"
     }
     
     @IBAction func checkSites(_ sender: Any) {

@@ -56,6 +56,14 @@ class PlatformaViewController: UIViewController {
     }
     
     @IBAction func goToMyPlans(_ sender: Any) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : myPlansViewController = mainStoryboard.instantiateViewController(withIdentifier: "myPlansViewController") as! myPlansViewController
+        var user: User!
+        user = User.init(id: self.id, firstname: self.firstname, lastname: self.lastname, email: self.email, password: "", income: self.income, spendings: self.spendings, plan_spendings: self.plan_spendings)
+        vc.user = user
+        vc.email = self.email
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     /*

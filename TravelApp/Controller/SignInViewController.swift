@@ -29,7 +29,7 @@ class SignInViewController: UIViewController{
         con.createTable(query: "CREATE TABLE IF NOT EXISTS Plan (id INTEGER Primary KEY Autoincrement, name Varchar(45) NOT NULL UNIQUE, iduser INTEGER NOT NULL, totalprice INTEGER NOT NULL, FOREIGN KEY(iduser) REFERENCES User(id));")
 
         con.createTable(query: "CREATE TABLE IF NOT EXISTS SitePlan (id INTEGER Primary KEY Autoincrement, idplan INTEGER NOT NULL, idsite INTEGER NOT NULL, FOREIGN KEY(idplan) REFERENCES Plan(id), FOREIGN KEY(idsite) REFERENCES Site(id));")
-        
+
         con.getAllUser()
         con.closeDB()
     }
