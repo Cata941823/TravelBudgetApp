@@ -29,7 +29,7 @@ class PlatformaViewController: UIViewController {
 
         nameLabel?.text = fullName
         sum = income - spendings - plan_spendings
-        print("\(sum) \(spendings) \(income)")
+        print("income:\(income) spending:\(spendings) Plans Already:\(plan_spendings)")
         sumLabel?.text = String(sum) + " RON"
         
         // Do any additional setup after loading the view.

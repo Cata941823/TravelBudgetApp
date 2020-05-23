@@ -14,11 +14,13 @@ class Plan {
     var name: String!
     var id_user: Int
     var total_price: Int
+    var total_days: Int
     
-    init(id: Int, name: String?, id_user: Int, total_price: Int){
+    init(id: Int, name: String?, id_user: Int, total_price: Int, total_days: Int){
         self.id = id
         self.name = name
         self.id_user = id_user
         self.total_price = total_price
+        self.total_days = total_days
     }
 }

@@ -735,11 +735,28 @@
                                     <outlet property="delegate" destination="PPC-Ny-PDP" id="poL-8Q-OEF"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LxX-MZ-YcA">
+                                <rect key="frame" x="20" y="634" width="374" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LxX-MZ-YcA" secondAttribute="height" multiplier="187:20" id="V74-hB-StT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="&lt; Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="backToPlatform:" destination="PPC-Ny-PDP" eventType="touchUpInside" id="GZQ-6E-JeN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="jfD-DA-Ijb" firstAttribute="trailing" secondItem="LxX-MZ-YcA" secondAttribute="trailing" constant="20" id="0Sd-uh-Lcd"/>
                             <constraint firstItem="gBH-Wc-UM2" firstAttribute="leading" secondItem="B01-6b-o7b" secondAttribute="leading" constant="-145" id="2u8-EL-qSI"/>
                             <constraint firstItem="jfD-DA-Ijb" firstAttribute="trailing" secondItem="4i0-TU-BOp" secondAttribute="trailing" constant="20" id="55L-HP-woE"/>
+                            <constraint firstItem="LxX-MZ-YcA" firstAttribute="top" secondItem="EEG-h2-NUN" secondAttribute="bottom" constant="29" id="5iD-g8-3R0"/>
+                            <constraint firstItem="LxX-MZ-YcA" firstAttribute="leading" secondItem="jfD-DA-Ijb" secondAttribute="leading" constant="20" id="6NF-XT-hsR"/>
                             <constraint firstAttribute="trailing" secondItem="gBH-Wc-UM2" secondAttribute="trailing" constant="-216" id="Dan-bV-Hvl"/>
                             <constraint firstItem="EEG-h2-NUN" firstAttribute="top" secondItem="A8k-dj-L7o" secondAttribute="bottom" constant="29" id="KAQ-lw-QhA"/>
                             <constraint firstItem="gBH-Wc-UM2" firstAttribute="top" secondItem="B01-6b-o7b" secondAttribute="top" constant="-168" id="VIN-jf-XNE"/>
@@ -774,7 +791,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="foU-7x-Dli">
                                 <rect key="frame" x="-61" y="-156" width="562" height="1208"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pari" translatesAutoresizingMaskIntoConstraints="NO" id="2w6-Ij-4ta">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lisbon.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="2w6-Ij-4ta">
                                 <rect key="frame" x="-11" y="100" width="437" height="103"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2w6-Ij-4ta" secondAttribute="height" multiplier="437:103" id="qbr-3e-7Aa"/>
@@ -1297,7 +1314,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Pari" width="374" height="82"/>
+        <image name="Lisbon.jpg" width="374" height="82"/>
         <image name="Rome" width="275" height="183"/>
         <image name="airplane" catalog="system" width="128" height="115"/>
         <image name="background" width="253" height="521"/>

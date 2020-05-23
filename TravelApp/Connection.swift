@@ -224,8 +224,10 @@ class Connection: UIViewController {
     }
     
     func updateUser(email: String, plan_spending: Int){
+        var last_plan_spending: Int = 0
+        last_plan_spending = self.getUser(email: email).plan_spendings
         
-        let updateStatementString = "UPDATE User SET plan_money = \(plan_spending) WHERE email = '\(email)';"
+        let updateStatementString = "UPDATE User SET plans = \(last_plan_spending + plan_spending) WHERE email = '\(email)';"
         var updateStatement: OpaquePointer?
         if sqlite3_prepare_v2(db, updateStatementString, -1, &updateStatement, nil) == SQLITE_OK {
             if sqlite3_step(updateStatement) == SQLITE_DONE {
@@ -466,21 +468,25 @@ class Connection: UIViewController {
         sqlite3_finalize(insertStatement)
     }
     
-    func insertPlan(name: String, iduser: Int, totalprice: Int){
-        let insertStatementString = "INSERT INTO Plan (name, iduser, totalprice) VALUES (?,?,?);"
+    func insertPlan(name: String, iduser: Int, totalprice: Int, totaldays: Int) -> Int{
+        let insertStatementString = "INSERT INTO Plan (name, iduser, totalprice, totaldays) VALUES (?,?,?,?);"
         var insertStatement: OpaquePointer?
-          
+        var ret: Int = 0
+        
         if sqlite3_prepare_v2(db, insertStatementString, -1, &insertStatement, nil) == SQLITE_OK {
             let name_: NSString = name as NSString
             let iduser_: NSInteger = iduser as NSInteger
             let totalprice_: NSInteger = totalprice as NSInteger
+            let totaldays_: NSInteger = totaldays as NSInteger
             
             sqlite3_bind_text(insertStatement, 1, name_.utf8String, -1, nil)
             sqlite3_bind_int(insertStatement, 2, Int32(iduser_))
             sqlite3_bind_int(insertStatement, 3, Int32(totalprice_))
+            sqlite3_bind_int(insertStatement, 4, Int32(totaldays_))
                 
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("\n Plan introdus.")
+                ret = 1
             } else {
                 print("\nNu s-a putut insera planul.")
             }
@@ -489,6 +495,7 @@ class Connection: UIViewController {
             print("Error inserting ATRACTIE: \(errmsg)")
         }
         sqlite3_finalize(insertStatement)
+        return ret
     }
     
     func insertSitePlan(id_plan: Int, id_site: Int){
@@ -538,10 +545,12 @@ class Connection: UIViewController {
                 let iduser = sqlite3_column_int(queryStatement, 2)
                 
                 let totalprice = sqlite3_column_int(queryStatement, 3)
+                
+                let totaldays = sqlite3_column_int(queryStatement, 4)
 
                 let name = String(cString: queryResultCol1)
 
-                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice))
+                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice), total_days: Int(totaldays))
             }
         } else {
             let errorMessage = String(cString: sqlite3_errmsg(db))
@@ -570,10 +579,12 @@ class Connection: UIViewController {
                 let iduser = sqlite3_column_int(queryStatement, 2)
                 
                 let totalprice = sqlite3_column_int(queryStatement, 3)
+                
+                let totaldays = sqlite3_column_int(queryStatement, 4)
 
                 let name = String(cString: queryResultCol1)
 
-                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice))
+                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice), total_days: Int(totaldays))
                 plans.append(plan)
             }
         } else {

@@ -60,24 +60,28 @@ class planViewController: UIViewController {
             var diff: Int!
             days = Int(daysTextField.text ?? "") ?? 0
             rest = self.restOfSum * days
-            diff = Int(self.user.income) - Int(self.user.spendings)
+            diff = Int(self.user.income) - Int(self.user.spendings) - Int(self.user.plan_spendings)
             
-            // strict
-            self.strictPricePerDayLabel?.text = "Total price for \(daysTextField?.text ?? "") days: \(self.sum + rest) RON"
-            self.strictMonthsLabel?.text = "Months remaining: \(round(Float((self.sum + rest))/Float(diff))) months"
-            self.strictMoneyToSaveLabel?.text = "Money/month to save: \(Float(diff) ) RON"
-            
-            
-            
-            // easy
-            self.easyPricePerDayLabel?.text = "Total price for \(daysTextField?.text ?? "") days: \(Float(self.sum) + Float(rest)) RON"
-            self.easyMonthsLabel?.text = "Months remaining: \(round((Float(self.sum) + Float(rest))/(Float(diff)-(Float(diff/3))))) months"
-            self.easyMoneyToSaveLabel?.text = "Money/month to save: \(Float(diff)-(Float(diff)/3)) RON"
-            
-            self.price_options[0] = diff
-            self.price_options[1] = diff - (diff/3)
-            self.total_price = self.sum + rest
-            
+            if(diff > 0){
+                // strict
+                self.strictPricePerDayLabel?.text = "Total price for \(daysTextField?.text ?? "") days: \(self.sum + rest) RON"
+                self.strictMonthsLabel?.text = "Months remaining: \(round(Float((self.sum + rest))/Float(diff))) months"
+                self.strictMoneyToSaveLabel?.text = "Money/month to save: \(Float(diff) ) RON"
+                
+                
+                
+                // easy
+                self.easyPricePerDayLabel?.text = "Total price for \(daysTextField?.text ?? "") days: \(Float(self.sum) + Float(rest)) RON"
+                self.easyMonthsLabel?.text = "Months remaining: \(round((Float(self.sum) + Float(rest))/(Float(diff)-(Float(diff/3))))) months"
+                self.easyMoneyToSaveLabel?.text = "Money/month to save: \(Float(diff)-(Float(diff)/3)) RON"
+                
+                self.price_options[0] = diff
+                self.price_options[1] = diff - (diff/3)
+                self.total_price = self.sum + rest
+            }
+            else{
+                displayMessage(userMessage: "No money in wallet.")
+            }
         }
     }
     
@@ -103,12 +107,11 @@ class planViewController: UIViewController {
                 con.updateUser(email: self.user.email, plan_spending: self.price_options[1])
             }
             
-            con.insertPlan(name: (self.planNameTextField?.text)!, iduser:self.user.id, totalprice: self.total_price)
-            
-            for i in self.sites{
-                con.insertSitePlan(id_plan: con.getPlan(plan_name: (self.planNameTextField?.text)!).id, id_site: i.id)
+            if(con.insertPlan(name: (self.planNameTextField?.text)!, iduser:self.user.id, totalprice: self.total_price, totaldays: Int(daysTextField.text ?? "") ?? 0)==1){
+                for i in self.sites{
+                    con.insertSitePlan(id_plan: con.getPlan(plan_name: (self.planNameTextField?.text)!).id, id_site: i.id)
+                }
             }
-            
             con.closeDB()
         }
     }
@@ -121,7 +124,7 @@ class planViewController: UIViewController {
             let OKAction = UIAlertAction(title: "OK", style: .default){
                 (action: UIAlertAction!) in
                 DispatchQueue.main.async{
-                    //self.dismiss(animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
             alertController.addAction(OKAction)

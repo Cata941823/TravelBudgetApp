@@ -38,6 +38,9 @@ class myPlansViewController: UIViewController {
         
         con.closeDB()
     }
+    @IBAction func backToPlatform(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension myPlansViewController: UITableViewDataSource, UITableViewDelegate{
