@@ -20,7 +20,6 @@ class searchDestViewController: UIViewController{
         con.openDatabase()
         destinations = con.getAllDestinations()
         for d in destinations{
-            print("\(d.city)\n")
             cityNameArr.append(d.city!)
         }
         con.closeDB()

@@ -113,6 +113,7 @@ class planViewController: UIViewController {
                 for i in self.sites{
                     con.insertSitePlan(id_plan: con.getPlan(plan_name: (self.planNameTextField?.text)!).id, id_site: i.id)
                 }
+                
                 displayMessage(title: "Succesfully", userMessage: "Plan added!")
             }
             con.closeDB()
@@ -127,7 +128,12 @@ class planViewController: UIViewController {
             let OKAction = UIAlertAction(title: "OK", style: .default){
                 (action: UIAlertAction!) in
                 DispatchQueue.main.async{
-                    self.dismiss(animated: true, completion: nil)
+                    if(title == "Succesfully"){
+                        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                        let vc : PlatformaViewController = mainStoryboard.instantiateViewController(withIdentifier: "PlatformaViewController") as! PlatformaViewController
+                        vc.modalPresentationStyle = .fullScreen
+                        self.present(vc, animated: true, completion: nil)
+                    }
                 }
             }
             alertController.addAction(OKAction)

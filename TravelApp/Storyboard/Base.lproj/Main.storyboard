@@ -391,29 +391,27 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="ckc-5A-GCO"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="1uK-U3-b5T"/>
                             </scrollView>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8aq-Xf-40y">
-                                <rect key="frame" x="0.0" y="903" width="414" height="63"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="8a6-dK-rkV"/>
-                                </constraints>
-                                <items>
-                                    <tabBarItem title="Add money" image="plus" catalog="system" selectedImage="plus" id="Nqq-oY-6wt"/>
-                                    <tabBarItem title="Home" image="person.fill" catalog="system" selectedImage="person" id="l1P-Ar-Jhw"/>
-                                    <tabBarItem title="Destinations" image="airplane" catalog="system" selectedImage="airplane" id="MwG-QQ-oUB"/>
-                                    <tabBarItem title="My plans" image="list.dash" catalog="system" selectedImage="list.dash" id="jF8-JZ-fse"/>
-                                </items>
-                            </tabBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyF-2F-RQf">
+                                <rect key="frame" x="0.0" y="901" width="414" height="99"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="SIGN OUT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOut:" destination="6LP-wC-CKf" eventType="touchUpInside" id="w8N-jJ-d4M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="8aq-Xf-40y" firstAttribute="trailing" secondItem="CM1-AI-h3L" secondAttribute="trailing" id="9rH-qO-ZF2"/>
                             <constraint firstItem="b3r-e8-bIW" firstAttribute="leading" secondItem="CM1-AI-h3L" secondAttribute="leading" id="BNj-cs-GER"/>
-                            <constraint firstItem="8aq-Xf-40y" firstAttribute="bottom" secondItem="CM1-AI-h3L" secondAttribute="bottom" id="DXV-7R-AGA"/>
                             <constraint firstItem="CM1-AI-h3L" firstAttribute="trailing" secondItem="b3r-e8-bIW" secondAttribute="trailing" id="FCW-Kb-iDa"/>
+                            <constraint firstItem="AyF-2F-RQf" firstAttribute="leading" secondItem="CM1-AI-h3L" secondAttribute="leading" id="Ffn-i7-EfV"/>
                             <constraint firstItem="CM1-AI-h3L" firstAttribute="bottom" secondItem="b3r-e8-bIW" secondAttribute="bottom" constant="73" id="IHn-Xl-RA7"/>
-                            <constraint firstItem="8aq-Xf-40y" firstAttribute="leading" secondItem="CM1-AI-h3L" secondAttribute="leading" id="KFq-mB-FFs"/>
-                            <constraint firstItem="8aq-Xf-40y" firstAttribute="top" secondItem="b3r-e8-bIW" secondAttribute="bottom" constant="10" id="mPY-UT-GJ8"/>
+                            <constraint firstAttribute="bottom" secondItem="AyF-2F-RQf" secondAttribute="bottom" id="RqK-dP-gwm"/>
+                            <constraint firstItem="AyF-2F-RQf" firstAttribute="top" secondItem="b3r-e8-bIW" secondAttribute="bottom" constant="8" id="VxW-Qg-xoG"/>
+                            <constraint firstItem="AyF-2F-RQf" firstAttribute="trailing" secondItem="CM1-AI-h3L" secondAttribute="trailing" id="rYg-Ms-l1a"/>
                             <constraint firstItem="b3r-e8-bIW" firstAttribute="top" secondItem="CM1-AI-h3L" secondAttribute="top" id="syq-NK-9Vh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CM1-AI-h3L"/>
@@ -426,7 +424,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mkv-Sn-Qrz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1000" y="1167"/>
+            <point key="canvasLocation" x="-1000.0000000000001" y="1166.5178571428571"/>
         </scene>
         <!--Money View Controller-->
         <scene sceneID="8DY-2D-jCW">
@@ -995,17 +993,6 @@
                                     <action selector="checkSites:" destination="aCY-MS-EG6" eventType="touchUpInside" id="GrL-ls-5oh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZb-40-Qad">
-                                <rect key="frame" x="247" y="562" width="128" height="36"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="yZb-40-Qad" secondAttribute="height" multiplier="32:9" id="8Wy-3o-dXb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Plans for trip">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LqR-56-Mwh">
                                 <rect key="frame" x="39" y="561" width="73" height="36"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1023,7 +1010,6 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="KqP-VY-lyk" firstAttribute="trailing" secondItem="yZb-40-Qad" secondAttribute="trailing" constant="39" id="0JW-si-Dsf"/>
                             <constraint firstItem="ewr-1v-Sbz" firstAttribute="top" secondItem="OPR-6z-TcA" secondAttribute="bottom" constant="25" id="20b-on-VDF"/>
                             <constraint firstItem="ecv-w3-76W" firstAttribute="centerX" secondItem="GzB-uC-Gfc" secondAttribute="centerX" id="3KG-1i-hF9"/>
                             <constraint firstItem="foU-7x-Dli" firstAttribute="top" secondItem="GzB-uC-Gfc" secondAttribute="top" constant="-156" id="4DK-Iu-XQa"/>
@@ -1033,7 +1019,6 @@
                             <constraint firstItem="kXx-Gv-wCj" firstAttribute="top" secondItem="ewr-1v-Sbz" secondAttribute="bottom" constant="25" id="BvP-FZ-VOQ"/>
                             <constraint firstAttribute="trailing" secondItem="2w6-Ij-4ta" secondAttribute="trailing" constant="-12" id="COs-ZM-CGi"/>
                             <constraint firstItem="foU-7x-Dli" firstAttribute="leading" secondItem="GzB-uC-Gfc" secondAttribute="leading" constant="-61" id="FNm-Mu-E6Z"/>
-                            <constraint firstItem="yZb-40-Qad" firstAttribute="top" secondItem="EOh-LI-Zl6" secondAttribute="bottom" constant="23" id="ML8-y0-yHa"/>
                             <constraint firstItem="OPR-6z-TcA" firstAttribute="leading" secondItem="KqP-VY-lyk" secondAttribute="leading" constant="39" id="NPO-Gq-Fy5"/>
                             <constraint firstItem="LqR-56-Mwh" firstAttribute="top" secondItem="EOh-LI-Zl6" secondAttribute="bottom" constant="22" id="NSz-eY-Rfw"/>
                             <constraint firstItem="kXx-Gv-wCj" firstAttribute="leading" secondItem="KqP-VY-lyk" secondAttribute="leading" constant="39" id="NxK-7J-SX8"/>
@@ -1435,13 +1420,8 @@
     <resources>
         <image name="Pari" width="374" height="82"/>
         <image name="Rome" width="275" height="183"/>
-        <image name="airplane" catalog="system" width="128" height="115"/>
         <image name="background" width="253" height="521"/>
         <image name="bg" width="240" height="394"/>
-        <image name="list.dash" catalog="system" width="128" height="85"/>
-        <image name="person" catalog="system" width="128" height="117"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plans" width="512" height="288"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>

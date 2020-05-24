@@ -22,11 +22,22 @@ class PlatformaViewController: UIViewController {
     var income: Int = 0
     var spendings: Int = 0
     var plan_spendings: Int = 0
+    var user: User!
     
-    
+    var con: Connection = Connection.init()
+      
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        con.openDatabase()
+        user = con.getUser(email: self.email)
+        con.closeDB()
+        self.id = user.id
+        self.fullName = user.lastname! + " " + user.firstname!
+        self.email = user.email!
+        self.income = user.income
+        self.spendings = user.spendings
+        self.plan_spendings = user.plan_spendings
+        
         nameLabel?.text = fullName
         sum = income - spendings - plan_spendings
         print("income:\(income) spending:\(spendings) Plans Already:\(plan_spendings)")
@@ -35,6 +46,12 @@ class PlatformaViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func signOut(_ sender: Any) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc : SignInViewController = mainStoryboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
     @IBAction func addMoney(_ sender: Any) {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : MoneyViewController = mainStoryboard.instantiateViewController(withIdentifier: "MoneyViewController") as! MoneyViewController
@@ -65,15 +82,4 @@ class PlatformaViewController: UIViewController {
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

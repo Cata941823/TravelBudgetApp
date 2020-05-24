@@ -55,11 +55,32 @@ class myDetailPlanViewController: UIViewController {
         con.createTable(query: "DELETE FROM SitePlan WHERE idplan = \(self.id ?? 0)")
         
         // Subtract from user the money for this plan
-        con.updateUser(email: self.email, plan_spending: (-self.plan_price))
+        con.updateUser(email: self.email, plan_spending: (0-self.plan_price))
         con.closeDB()
+        
+        displayMessage(title: "Succesfully", userMessage: "Plan deleted!")
     }
     
     @IBAction func backToPlans(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func displayMessage(title: String, userMessage: String) -> Void{
+        DispatchQueue.main.async {
+            
+            let alertController = UIAlertController(title: title, message: userMessage, preferredStyle: .alert)
+            
+            let OKAction = UIAlertAction(title: "OK", style: .default){
+                (action: UIAlertAction!) in
+                DispatchQueue.main.async{
+                    let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                    let vc : PlatformaViewController = mainStoryboard.instantiateViewController(withIdentifier: "PlatformaViewController") as! PlatformaViewController
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
+            alertController.addAction(OKAction)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
 }
