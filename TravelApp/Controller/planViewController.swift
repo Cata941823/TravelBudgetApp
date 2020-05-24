@@ -99,15 +99,17 @@ class planViewController: UIViewController {
         }
         else{
             con.openDatabase()
-
+            var x: Int!
             if self.selectPlan.selectedSegmentIndex == 0 {
                 con.updateUser(email: self.user.email, plan_spending:self.price_options[0])
+                x = self.price_options[0]
             }
             else{
                 con.updateUser(email: self.user.email, plan_spending: self.price_options[1])
+                x = self.price_options[1]
             }
             
-            if(con.insertPlan(name: (self.planNameTextField?.text)!, iduser:self.user.id, totalprice: self.total_price, totaldays: Int(daysTextField.text ?? "") ?? 0)==1){
+            if(con.insertPlan(name: (self.planNameTextField?.text)!, iduser:self.user.id, totalprice: self.total_price, totaldays: Int(daysTextField.text ?? "") ?? 0, planprice: Int(x), destination: self.dest.city!))==1{
                 for i in self.sites{
                     con.insertSitePlan(id_plan: con.getPlan(plan_name: (self.planNameTextField?.text)!).id, id_site: i.id)
                 }

@@ -18,6 +18,7 @@ class myPlansViewController: UIViewController {
     var user: User!
     
     var planPriceArr = [Int]()
+    var planPricePlanArr = [Int]()
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tblView: UITableView!
@@ -30,10 +31,9 @@ class myPlansViewController: UIViewController {
         con.openDatabase()
         plans = con.getAllPlans(iduser: user.id)
         for d in plans{
-            print("\(d.name)\n")
             planNameArr.append(d.name!)
-            print("\(d.total_price)")
             planPriceArr.append(d.total_price)
+            planPricePlanArr.append(d.plan_price)
         }
         
         con.closeDB()
@@ -73,13 +73,17 @@ extension myPlansViewController: UITableViewDataSource, UITableViewDelegate{
         }
         let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let vc : myDetailPlanViewController = mainStoryboard.instantiateViewController(withIdentifier: "myDetailPlanViewController") as! myDetailPlanViewController
-        //vc.destination = con.getDestination(plan_name: plan_.name)
+        con.openDatabase()
+        vc.plan_price = plan_.plan_price
+        vc.email = self.email
+        vc.destination = plan_.destination
         vc.price = plan_.total_price
         vc.id = plan_.id
         vc.id_user = plan_.id_user
         vc.name = plan_.name
         vc.total_days = plan_.total_days
         vc.sites = con.getAllSitesFromPlan(id: plan_.id)
+        con.closeDB()
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }

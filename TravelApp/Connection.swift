@@ -224,6 +224,7 @@ class Connection: UIViewController {
         sqlite3_finalize(queryStatement)
         return (monthlyIncome!, monthlySpending!)
     }
+
     
     func updateUser(email: String, plan_spending: Int){
         var last_plan_spending: Int = 0
@@ -332,14 +333,16 @@ class Connection: UIViewController {
 
     }
     
-    func getDestination(plan_name: String) -> String {
-        let queryStatementString = "SELECT d.city FROM Destination d INNER JOIN Site s ON s.iddestination = d.id INNER JOIN SitePlan sp ON s.id = sp.idsite INNER JOIN Plan p ON sp.idplan = p.id WHERE p.name = '\(plan_name)';"
+    func getDestination(plan_id: Int) -> String {
+        let queryStatementString = "SELECT d.city FROM Destination d INNER JOIN Site s ON d.id = s.iddestination INNER JOIN SitePlan sp ON s.id = sp.idsite INNER JOIN Plan p ON sp.idplan = p.id WHERE p.id = 1;"
+        print("MACAR AICI")
         var queryStatement: OpaquePointer?
         var plan_name_: String!
         
         if sqlite3_prepare_v2(db, queryStatementString, -1, &queryStatement, nil) == SQLITE_OK {
-        
+            print("DAR AICI")
             while sqlite3_step(queryStatement) == SQLITE_ROW {
+                print("AICI CLAR NU")
                 guard let queryResultCol1 = sqlite3_column_text(queryStatement, 0) else {
                     print("Query result is nil")
                     let errorMessage = String(cString: sqlite3_errmsg(db))
@@ -347,7 +350,7 @@ class Connection: UIViewController {
                     return plan_name_
                 }
                 plan_name_ = String(cString: queryResultCol1)
-                print("PLAN: \(plan_name_)")
+                return plan_name_
             }
         } else {
             let errorMessage = String(cString: sqlite3_errmsg(db))
@@ -524,8 +527,8 @@ class Connection: UIViewController {
         sqlite3_finalize(insertStatement)
     }
     
-    func insertPlan(name: String, iduser: Int, totalprice: Int, totaldays: Int) -> Int{
-        let insertStatementString = "INSERT INTO Plan (name, iduser, totalprice, totaldays) VALUES (?,?,?,?);"
+    func insertPlan(name: String, iduser: Int, totalprice: Int, totaldays: Int, planprice: Int, destination: String) -> Int{
+        let insertStatementString = "INSERT INTO Plan (name, iduser, totalprice, totaldays, planprice, destination) VALUES (?,?,?,?,?,?);"
         var insertStatement: OpaquePointer?
         var ret: Int = 0
         
@@ -534,11 +537,15 @@ class Connection: UIViewController {
             let iduser_: NSInteger = iduser as NSInteger
             let totalprice_: NSInteger = totalprice as NSInteger
             let totaldays_: NSInteger = totaldays as NSInteger
+            let planprice_: NSInteger = planprice as NSInteger
+            let destination_: NSString = destination as NSString
             
             sqlite3_bind_text(insertStatement, 1, name_.utf8String, -1, nil)
             sqlite3_bind_int(insertStatement, 2, Int32(iduser_))
             sqlite3_bind_int(insertStatement, 3, Int32(totalprice_))
             sqlite3_bind_int(insertStatement, 4, Int32(totaldays_))
+            sqlite3_bind_int(insertStatement, 5, Int32(planprice_))
+            sqlite3_bind_text(insertStatement, 6, destination_.utf8String, -1, nil)
                 
             if sqlite3_step(insertStatement) == SQLITE_DONE {
                 print("\n Plan introdus.")
@@ -598,15 +605,24 @@ class Connection: UIViewController {
                     return plan
                 }
                 
+                guard let queryResultCol2 = sqlite3_column_text(queryStatement, 6) else {
+                    print("Query result is nil")
+                    return plan
+                }
+                
+                
                 let iduser = sqlite3_column_int(queryStatement, 2)
                 
                 let totalprice = sqlite3_column_int(queryStatement, 3)
                 
                 let totaldays = sqlite3_column_int(queryStatement, 4)
+                
+                let planprice = sqlite3_column_int(queryStatement, 5)
 
                 let name = String(cString: queryResultCol1)
+                let dest = String(cString: queryResultCol2)
 
-                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice), total_days: Int(totaldays))
+                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice), total_days: Int(totaldays), plan_price: Int(planprice), destination: dest)
             }
         } else {
             let errorMessage = String(cString: sqlite3_errmsg(db))
@@ -631,16 +647,25 @@ class Connection: UIViewController {
                     print("Query result is nil")
                     return plans
                 }
+                
+                guard let queryResultCol2 = sqlite3_column_text(queryStatement, 6) else {
+                    print("Query result is nil")
+                    return plans
+                }
                     
                 let iduser = sqlite3_column_int(queryStatement, 2)
                 
                 let totalprice = sqlite3_column_int(queryStatement, 3)
                 
                 let totaldays = sqlite3_column_int(queryStatement, 4)
-
+                
+                let planprice = sqlite3_column_int(queryStatement, 5)
+                
+                print("ID____: \(id)\n")
                 let name = String(cString: queryResultCol1)
-
-                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice), total_days: Int(totaldays))
+                let dest = String(cString: queryResultCol2)
+                
+                plan = Plan.init(id: Int(id), name: name, id_user: Int(iduser), total_price: Int(totalprice), total_days: Int(totaldays), plan_price: Int(planprice), destination: dest)
                 plans.append(plan)
             }
         } else {
